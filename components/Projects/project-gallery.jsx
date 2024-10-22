@@ -12,6 +12,7 @@ import {
 
 import { Link2 } from "lucide-react";
 import Link from "next/link";
+import CustomImage from "../CustomImage";
 
 const ProjectGallery = ({ projectId }) => {
   const project = projectsData.filter((project) => project.id === projectId);
@@ -73,33 +74,6 @@ const ProjectGallery = ({ projectId }) => {
                   </ul>
                 </div>
               </div>
-              {/* <div className="">
-                {project[0].link && project[0].link !== "" ? (
-                  <Link href={project[0].link} target="_blank">
-                    <TooltipProvider delayDuration={100}>
-                      <Tooltip>
-                        <TooltipTrigger className="w-[44px] h-[44px] rounded-full bg-white/5 ">
-                          <ArrowUpLeft className="text-3xl text-white group-hover:text-accent" />
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>GitHub repository</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </Link>
-                ) : (
-                  <div className="w-[70px] h-[70px] rounded-full bg-gray-300 flex justify-center items-center cursor-not-allowed">
-                    <ArrowUpLeft className="text-3xl text-gray-500" />
-                    <TooltipProvider delayDuration={100}>
-                      <Tooltip>
-                        <TooltipContent>
-                          <p>GitHub repository not available</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
-                )}
-              </div> */}
             </div>
           </div>
         </div>
@@ -113,7 +87,7 @@ const ProjectGallery = ({ projectId }) => {
                   <CarouselContent>
                     {filterarray.imgs.map((filter, idxx) => (
                       <CarouselItem key={"images" + idxx}>
-                        <img
+                        <CustomImage
                           src={filter.img}
                           width="1920"
                           height="1080"

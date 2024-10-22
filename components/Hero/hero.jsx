@@ -26,15 +26,14 @@ export default function Hero() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
             className="p-6 overflow-hidden text-center "
           >
-            <p
-              className="py-2 text-4xl font-[Rakkas] font-medium text-[#6936f5]
+            <h2
+              className="py-2 text-4xl font-[Rakkas]  text-[#6936f5]
               md:text-5xl"
             >
               {heroContent.heroTitleName}
-            </p>
+            </h2>
             <motion.h3
               variants={textVariant(1.2)}
               initial="hidden"
@@ -69,7 +68,7 @@ export default function Hero() {
               alt="image"
               src="/assets/hero.jpg"
               layout="fill"
-              className="object-fill transition-all duration-500 hover:scale-125"
+              className="object-cover transition-all duration-500 hover:scale-125"
             />
           </motion.div>
         </div>

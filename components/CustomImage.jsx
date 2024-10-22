@@ -13,6 +13,7 @@ function CustomImage({ alt, ...props }) {
       alt={alt}
       onError={() => setSrc("/notImg.jpg") + setM(true)}
       placeholder="blur"
+      priority
       blurDataURL="/notImg.jpg"
     />
   );

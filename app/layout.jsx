@@ -12,7 +12,8 @@ import { siteConfig } from "@/utils/seo";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Shared/NavBar";
 import Footer from "@/components/Shared/Footer";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -47,25 +48,29 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const ggogleanalytics = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
   return (
     <html dir="rtl" lang="ar">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <link rel="canonical" href="https://mohammedh.sa" />
       </head>
-      <GoogleAnalytics />
+
       <body suppressHydrationWarning className={`   antialiased`}>
         {/* <MainLayout>{children}</MainLayout> */}
         <div className="px-1 w-fill sm:px-10">
           <header className="sticky top-0 z-10 ">
             <Navbar />
           </header>
-          <div className="relative main-container">{children}</div>
+          <div className="relative ">{children}</div>
         </div>
         <footer>
           <Footer />
         </footer>
         <Toaster />
       </body>
+      <GoogleAnalytics gaId={ggogleanalytics} />
     </html>
   );
 }

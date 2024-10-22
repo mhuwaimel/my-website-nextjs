@@ -12,6 +12,7 @@ import {
 
 import Menu from "./Menu";
 import MobileMenu from "./MobileMenu";
+import Image from "next/image";
 
 const Navbar = () => {
   const sendMail = () => {
@@ -26,7 +27,14 @@ const Navbar = () => {
     <div className="w-full h-[50px] md:h-[80px] bg-[#ffffff] flex items-center justify-between px-8 transition-transform duration-300">
       <div className="flex items-center text-2xl text-gray-800 cursor-pointer">
         <Link href={"/"}>
-          <img src="/assets/logo32.png" alt="logo" className="h-[32] w-[32]" />
+          <Image
+            src="/assets/logo32.png"
+            alt="logo"
+            priority
+            width={32}
+            height={32}
+            className="aspect-auto"
+          />
         </Link>
         <Link
           className="mr-2 font-bold tracking-widest text-gray-900 rounded fill-current ltr:ml-2 dark:text-gray-100"
