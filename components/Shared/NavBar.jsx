@@ -50,10 +50,11 @@ const Navbar = () => {
       <div className="flex items-center gap-2 text-black">
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger>
+            <TooltipTrigger aria-label="contact me">
               <div className="flex items-center gap-4 ">
                 <a
                   href="#"
+                  aria-label="contact me"
                   className="p-2 rounded-full contact-icon hover:bg-gray-200"
                   onClick={sendMail}
                 >

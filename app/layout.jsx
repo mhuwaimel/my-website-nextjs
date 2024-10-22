@@ -49,6 +49,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html dir="rtl" lang="ar">
+      <head>
+        <link rel="canonical" href="https://mohammedh.sa" />
+      </head>
       <GoogleAnalytics />
       <body suppressHydrationWarning className={`   antialiased`}>
         {/* <MainLayout>{children}</MainLayout> */}
