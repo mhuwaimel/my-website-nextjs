@@ -1,4 +1,3 @@
-
 # My personal website
 
 ## Built with
@@ -8,4 +7,8 @@
 - **shadcn-ui**
 - **Tailwind CSS**
 
-![Alt text](image.png)
+###
+![Home Page](image.png)
+###
+
+![Performance Page](pagespeed.png)
