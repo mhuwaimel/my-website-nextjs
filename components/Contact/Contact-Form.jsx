@@ -100,14 +100,8 @@ export default function ContactForm() {
     console.log(name, email, subject, message);
   };
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        ease: "easeInOut",
-        duration: 0.5,
-        delay: 0.1,
-      }}
+    <section
+     
       className="container bg-white dark:bg-gray-900"
     >
       <div className="w-full px-6 py-12 mx-auto">
@@ -261,6 +255,6 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

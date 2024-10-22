@@ -1,7 +1,13 @@
 "use client";
 import React, { Component, useState } from "react";
 
-import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
+import {
+  AnimatePresence,
+  domAnimation,
+  LazyMotion,
+  motion,
+  m,
+} from "framer-motion";
 import { usePathname } from "next/navigation";
 import { animations } from "@/utils/animations";
 import Footer from "../Shared/Footer";
@@ -31,7 +37,7 @@ export default function MainLayout({ children }) {
 
       <LazyMotion features={domAnimation}>
         <AnimatePresence mode={!exitBefore}>
-          <m.div
+          <motion.div
             key={pathname.concat(animation.name)}
             className="page-wrap"
             initial="initial"
@@ -41,7 +47,7 @@ export default function MainLayout({ children }) {
             transition={animation.transition}
           >
             <div className="relative main-container">{children}</div>
-          </m.div>
+          </motion.div>
         </AnimatePresence>
       </LazyMotion>
 

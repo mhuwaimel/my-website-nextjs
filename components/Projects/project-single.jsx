@@ -4,16 +4,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 const ProjectSingle = (props) => {
   return (
-    <motion.div
-      key={props.id}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, delay: 1 }}
-      transition={{
-        ease: "easeInOut",
-        duration: 0.7,
-        delay: 0.15,
-      }}
-    >
+    <div key={props.id}>
       <Link
         href="/projects/[id]"
         as={"/projects/" + props.id}
@@ -35,13 +26,13 @@ const ProjectSingle = (props) => {
             <p className="mb-2 text-base font-[cairo] font-bold text-ternary-dark dark:text-ternary-light">
               {props.Title}
             </p>
-            <span className="text-lg text-ternary-dark dark:text-ternary-light">
+            {/* <span className="text-lg text-ternary-dark dark:text-ternary-light">
               {props.techStack}
-            </span>
+            </span> */}
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 };
 

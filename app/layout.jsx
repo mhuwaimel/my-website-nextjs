@@ -8,9 +8,10 @@ import "@fontsource/changa";
 import "@fontsource/rakkas";
 import "@fontsource/lateef";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import MainLayout from "@/components/Layout/MainLayout";
 import { siteConfig } from "@/utils/seo";
 import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Shared/NavBar";
+import Footer from "@/components/Shared/Footer";
 
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -49,7 +50,16 @@ export default function RootLayout({ children }) {
   return (
     <html dir="rtl" lang="ar">
       <body suppressHydrationWarning className={`   antialiased`}>
-        <MainLayout>{children}</MainLayout>
+        {/* <MainLayout>{children}</MainLayout> */}
+        <div className="px-1 w-fill sm:px-10">
+          <header className="sticky top-0 z-10 ">
+            <Navbar />
+          </header>
+          <div className="relative main-container">{children}</div>
+        </div>
+        <footer>
+          <Footer />
+        </footer>
         <Toaster />
       </body>
       <GoogleAnalytics gaId={googleAn} />

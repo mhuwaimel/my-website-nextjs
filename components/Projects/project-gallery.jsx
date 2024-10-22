@@ -2,7 +2,6 @@
 
 import projectsData from "@/data/projects";
 
-import { motion } from "framer-motion";
 import {
   Carousel,
   CarouselContent,
@@ -25,15 +24,7 @@ const ProjectGallery = ({ projectId }) => {
   //   if (!project) return <div>No project found</div>;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, delay: 1 }}
-      transition={{
-        ease: "easeInOut",
-        duration: 0.7,
-        delay: 0.15,
-      }}
-    >
+    <div>
       <div className="container mx-auto">
         {/* Header */}
         <div>
@@ -49,7 +40,7 @@ const ProjectGallery = ({ projectId }) => {
             {/* Single project client details */}
             <div className="mb-7">
               <p className="mb-2 md:text-2xl text-xl  font-[tajawal] tracking-tighter text-secondary-dark dark:text-secondary-light">
-                {project[0].Description}
+                {project[0].Description_All}
               </p>
             </div>
             <div className="mb-7">
@@ -149,7 +140,7 @@ const ProjectGallery = ({ projectId }) => {
 
         {/* Info */}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

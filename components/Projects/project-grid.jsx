@@ -1,8 +1,6 @@
-"use client";
-
 import ProjectSingle from "./project-single";
-import { motion } from "framer-motion";
-import WorkData from "@/data/WorkData";
+
+import projectsData from "@/data/projects";
 const ProjectsGrid = () => {
   return (
     <section className="py-4 mt-3 sm:py-10 sm:mt-10">
@@ -17,8 +15,8 @@ const ProjectsGrid = () => {
       </div> */}
 
       <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-5">
-        {WorkData &&
-          WorkData.map((project, index) => (
+        {projectsData &&
+          projectsData.map((project, index) => (
             <ProjectSingle key={index} {...project} />
           ))}
       </div>

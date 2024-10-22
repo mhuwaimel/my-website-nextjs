@@ -1,20 +1,9 @@
-"use client";
 import { BriefcaseBusiness } from "lucide-react";
 
-import { motion } from "framer-motion";
 export default function ExperienceCard({ resumData }) {
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          ease: "easeInOut",
-          duration: 0.5,
-          delay: 0.1,
-        }}
-        className="flex items-center justify-center p-3 m-4 ltr:justify-end w-fit justify-items-center"
-      >
+      <div className="flex items-center justify-center p-3 m-4 ltr:justify-end w-fit justify-items-center">
         <ol className="relative border-r-2 border-gray-300 dark:border-gray-700">
           {resumData.map((value, i) => (
             <li key={i} className="mb-10 mr-6">
@@ -39,7 +28,7 @@ export default function ExperienceCard({ resumData }) {
             </li>
           ))}
         </ol>
-      </motion.div>
+      </div>
     </>
   );
 }
