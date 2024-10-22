@@ -12,7 +12,6 @@ import {
 
 import Menu from "./Menu";
 import MobileMenu from "./MobileMenu";
-import { Button } from "../ui/button";
 
 const Navbar = () => {
   const sendMail = () => {
@@ -53,12 +52,13 @@ const Navbar = () => {
           <Tooltip>
             <TooltipTrigger>
               <div className="flex items-center gap-4 ">
-                <p
+                <a
+                  href="#"
                   className="p-2 rounded-full contact-icon hover:bg-gray-200"
                   onClick={sendMail}
                 >
                   <Mail color="#6936f5" />
-                </p>
+                </a>
               </div>
             </TooltipTrigger>
             <TooltipContent>

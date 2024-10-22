@@ -1,5 +1,4 @@
 import ExperienceCard from "@/components/Experience/ExperienceCard";
-import { siteConfig } from "@/utils/seo";
 
 const ResumData = [
   {
@@ -90,13 +89,6 @@ const ResumData = [
     image: null,
   },
 ];
-export const metadata = {
-  metadataBase: new URL(siteConfig.url),
-
-  title: {
-    default: siteConfig.title + " | " + "الخبرات المهنية",
-  },
-};
 
 export default function ExperiencePage() {
   return (

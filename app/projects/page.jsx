@@ -1,7 +1,4 @@
-"use client";
 import ProjectsGrid from "@/components/Projects/project-grid";
-import { siteConfig } from "@/utils/seo";
-import { motion } from "framer-motion";
 
 export default function ProjectPage() {
   return (

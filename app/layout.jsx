@@ -7,11 +7,12 @@ import "@fontsource/almarai";
 import "@fontsource/changa";
 import "@fontsource/rakkas";
 import "@fontsource/lateef";
-import { GoogleAnalytics } from "@next/third-parties/google";
+
 import { siteConfig } from "@/utils/seo";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/Shared/NavBar";
 import Footer from "@/components/Shared/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -46,9 +47,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const googleAn = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
   return (
     <html dir="rtl" lang="ar">
+      <GoogleAnalytics />
       <body suppressHydrationWarning className={`   antialiased`}>
         {/* <MainLayout>{children}</MainLayout> */}
         <div className="px-1 w-fill sm:px-10">
@@ -62,7 +63,6 @@ export default function RootLayout({ children }) {
         </footer>
         <Toaster />
       </body>
-      <GoogleAnalytics gaId={googleAn} />
     </html>
   );
 }

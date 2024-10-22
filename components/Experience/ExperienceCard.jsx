@@ -5,8 +5,8 @@ export default function ExperienceCard({ resumData }) {
     <>
       <div className="flex items-center justify-center p-3 m-4 ltr:justify-end w-fit justify-items-center">
         <ol className="relative border-r-2 border-gray-300 dark:border-gray-700">
-          {resumData.map((value, i) => (
-            <li key={i} className="mb-10 mr-6">
+          {resumData.map((value) => (
+            <li key={value.Id} className="mb-10 mr-6">
               <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -right-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
                 <BriefcaseBusiness color="#6936f5" height={24} width={24} />
               </span>

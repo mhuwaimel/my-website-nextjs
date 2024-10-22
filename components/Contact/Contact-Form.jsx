@@ -1,6 +1,6 @@
 "use client";
 import { Phone, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+
 import { useToast } from "@/hooks/use-toast";
 import { useRef, useState } from "react";
 import { Button } from "../ui/button";
@@ -100,10 +100,7 @@ export default function ContactForm() {
     console.log(name, email, subject, message);
   };
   return (
-    <section
-     
-      className="container bg-white dark:bg-gray-900"
-    >
+    <section className="container bg-white dark:bg-gray-900">
       <div className="w-full px-6 py-12 mx-auto">
         <div>
           <h1 className="mt-2 text-2xl font-[Mada] font-semibold text-gray-800 md:text-3xl dark:text-white">

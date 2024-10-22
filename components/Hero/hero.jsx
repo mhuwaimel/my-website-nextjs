@@ -69,7 +69,7 @@ export default function Hero() {
               alt="image"
               src="/assets/hero.jpg"
               layout="fill"
-              className="transition-all duration-500 hover:scale-125"
+              className="transition-all duration-500 aspect-square hover:scale-125"
             />
           </motion.div>
         </div>
