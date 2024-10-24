@@ -12,14 +12,6 @@ const ProjectSingle = (props) => {
       >
         <div className="mb-10 shadow-lg cursor-pointer rounded-xl hover:shadow-xl sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
           <div>
-            {/* <Image
-              src={props.Image}
-              className="border-none rounded-t-xl"
-              alt="Single Project"
-              layout="responsive"
-              width={100}
-              height={100}
-            /> */}
             <CustomImage
               src={props.Image}
               className="border-none rounded-t-xl"

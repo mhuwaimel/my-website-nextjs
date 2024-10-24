@@ -1,7 +1,9 @@
 "use client";
-import { staggerContainer, textVariant, zoomIn } from "@/utils/animation";
+
 import { motion } from "framer-motion";
 import CustomImage from "../CustomImage";
+import HeroText from "./HeroText";
+import HeroImage from "./HeroImage";
 const heroContent = {
   heroImage: "img/hero/dark.jpg",
   heroMobileImage: "img-mobile",
@@ -22,55 +24,14 @@ export default function Hero() {
         className="flex flex-col items-center mt-5 sm:justify-between sm:flex-row md:mt-2"
       >
         <div className="w-full text-right md:text-right md:w-2/3">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="show"
-            className="p-6 overflow-hidden text-center "
-          >
-            <h2
-              className="py-2 text-4xl font-[Rakkas]  text-[#6936f5]
-              md:text-5xl"
-            >
-              {heroContent.heroTitleName}
-            </h2>
-            <motion.h3
-              variants={textVariant(1.2)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              layout="position"
-              className="py-2 text-lg tracking-tight md:text-3xl font-[cairo]"
-            >
-              {heroContent.heroDesignation}
-            </motion.h3>
-            <motion.p
-              variants={textVariant(1.3)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="max-w-xl py-5 mx-auto leading-8 tracking-normal font-[Lateef]  
-              text-3xl text-slate-600 dark:text-slate-500 md:text-4xl"
-            >
-              {heroContent.heroDescriptions}
-            </motion.p>
-          </motion.div>
+          <HeroText
+            heroDescriptions={heroContent.heroDescriptions}
+            heroTitleName={heroContent.heroTitleName}
+            heroDesignation={heroContent.heroDesignation}
+          />
         </div>
         <div className="w-full text-center md:w-1/3 md:text-right">
-          <motion.div
-            variants={zoomIn(0.5, 1)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
-            className="relative mx-auto mt-10 overflow-hidden rounded-full shadow-xl h-52 w-52 bg-gradient-to-b from-teal-500 md:h-96 md:w-96"
-          >
-            <CustomImage
-              alt="image"
-              src="/assets/hero.jpg"
-              layout="fill"
-              className="object-cover transition-all duration-500 hover:scale-125"
-            />
-          </motion.div>
+          <HeroImage />
         </div>
       </motion.section>
     </>
