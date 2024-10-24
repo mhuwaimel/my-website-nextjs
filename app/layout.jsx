@@ -14,7 +14,7 @@ import Navbar from "@/components/Shared/NavBar";
 import Footer from "@/components/Shared/Footer";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { GoogleTagManager } from "@next/third-parties/google";
+
 
 export const metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -58,7 +58,7 @@ export default function RootLayout({ children }) {
 
         <link rel="canonical" href="https://mohammedh.sa" />
       </head>
-      <GoogleTagManager gtmId={googleTagManger} />
+    
       <body suppressHydrationWarning className={`   antialiased`}>
         {/* <MainLayout>{children}</MainLayout> */}
         <div className="px-1 w-fill sm:px-10">
