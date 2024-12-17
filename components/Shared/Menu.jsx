@@ -8,7 +8,7 @@ const Menu = ({ showSubMenu, setShowSubMenu }) => {
     { id: 1, name: "عــني", url: "/" },
     { id: 2, name: "الخبرات المهنية", url: "/experience" },
     { id: 3, name: "أعمـالي", url: "/projects" },
-    { id: 4, name: "المدونة", url: "/#" },
+    { id: 4, name: "GitHub", url: "/github" },
     { id: 5, name: "تـواصل", url: "/contact" },
   ];
 
