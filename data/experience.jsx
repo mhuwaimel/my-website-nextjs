@@ -39,7 +39,7 @@ const resumData = [
     Place: "",
     Description:
       "مشرف تربوي لمادة الحاسب الآلي بمكتب التعليم بمحافظة الرين - إدارة التعليم بمحافظة القويعية",
-    Start: "2017",
+    Start: "2016",
     EndJob: "2019",
     location: null,
     image: null,
@@ -50,7 +50,7 @@ const resumData = [
     Place: "",
     Description: "وزارة التعليم – إدارة التعليم بمحافظة القويعية ",
     Start: "2011",
-    EndJob: "2017",
+    EndJob: "2016",
     location: null,
     image: null,
   },
