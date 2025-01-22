@@ -11,6 +11,7 @@ export const siteConfig = {
   ogUrl: "https://www.mohammedh.sa", // Replace with your URL
   ogImageUrl: "/assets/hero.jpg", // Replace with your image URL
   verification: "WVx7eEsjASR60PqML6j_K3wSyROLR5qqp8905y-Zv8Y",
+  bing_verification: "9C0D081B10D033EC5667B464D310B54F",
   url: "https://mohammadh.sa",
   keywords: [
     "الهويمل",

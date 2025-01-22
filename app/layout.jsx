@@ -84,6 +84,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html dir="rtl" lang="ar">
+      <head>
+        <meta name="msvalidate.01" content="9C0D081B10D033EC5667B464D310B54F" />
+      </head>
       <body
         className={`${cairo.variable} ${lateef.variable} 
           ${mada.variable} ${rakkas.variable} ${vibes.variable}
