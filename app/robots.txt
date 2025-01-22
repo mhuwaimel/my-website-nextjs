@@ -1,0 +1,5 @@
+    User-Agent: *
+Allow: /
+
+
+Sitemap: https://mohammedh.sa/sitemap.xml
