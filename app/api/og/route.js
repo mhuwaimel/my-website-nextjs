@@ -28,10 +28,9 @@ export async function GET(request) {
         <img
           width="1200"
           height="1023"
-          src={`https://vglomomotvy8urx2.public.blob.vercel-storage.com/mySite/Mohammed-4XGvjemcA4ohtKvsnUvGsUxdmuvkLa.png`}
+          src={`https://vglomomotvy8urx2.public.blob.vercel-storage.com/DSC04884_New_1-new%20(1)-min%20(1)-DH2YusNaB5GeE8nhhxkV8yLLFYAkfO.jpg`}
         />
       ),
-
       {
         width: 1200,
         height: 1023,
