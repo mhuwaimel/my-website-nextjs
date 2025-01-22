@@ -1,6 +1,6 @@
 export const siteConfig = {
   title: "محمد الهويمل",
-  name: "محمد عبدالعزيز الهويمل Mohammed AlHuwimmel",
+  name: "محمد عبدالعزيز الهويمل  Mohammed AlHuwimmel",
   longTitle: "محمد عبدالعزيز الهويمل",
 
   description:
