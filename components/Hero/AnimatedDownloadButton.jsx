@@ -11,7 +11,7 @@ export default function AnimatedDownloadButton() {
     setIsAnimating(true);
     // Simulate download process
     setTimeout(() => setIsAnimating(false), 2000);
-    const link = `/Resume/Mohammed-CV.pdf`;
+    const link = `/Resume/Cv-english.pdf`;
 
     window.location.href = link;
   };

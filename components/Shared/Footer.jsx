@@ -7,7 +7,7 @@ const Footer = () => {
       <p className="icons">
         <Link
           target="_blank"
-          href="https://sa.linkedin.com/in/mohammed-alhuwaimel"
+          href="https://www.linkedin.com/in/mhuwimmel/"
           aria-label="My linkedin link"
         >
           <Linkedin className="text-xl font-bold text-cyan-600 hover:text-2xl hover:text-cyan-950" />
