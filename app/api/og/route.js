@@ -33,11 +33,9 @@ export const GET = async (req) => {
         }
         if(projectId){
           const project = projectsData.filter((project) => project.id === projectId);
-          // const fontData = await fetch(
-          //   new URL("./images/KacstLetter.ttf", import.meta.url)
-          // ).then((res) => res.arrayBuffer());
+         
           const imageData = await fetch(
-            new URL(`../../../public/${project[0].imgs[0].img}`, import.meta.url)
+            new URL(`${process.env.NEXT_PUBLIC_WEBSITE_URL}${project[0].imgs[0].img}`, import.meta.url)
           ).then((res) => res.arrayBuffer());
       
           return new ImageResponse(
@@ -53,6 +51,7 @@ export const GET = async (req) => {
                                        />
            
             ),
+         
                                       
             
             
