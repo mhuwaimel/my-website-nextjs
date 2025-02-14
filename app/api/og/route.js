@@ -1,40 +1,74 @@
-import { ImageResponse } from "next/og";
+
 import projectsData from "@/data/projects";
-import { join } from "node:path";
-import { readFile } from "node:fs/promises";
 
-export async function GET(request) {
-  const { searchParams } = new URL(request.url);
-  const pId = searchParams.get("ida");
+import { ImageResponse } from "@vercel/og";
 
-  if (pId) {
-    const project = projectsData.filter((project) => project.id === pId);
-    const logoData = await readFile(
-      join(process.cwd(), "\\public\\" + project[0].imgs[0].img)
-    );
-    const logoSrc = Uint8Array.from(logoData).buffer;
-    return new ImageResponse(
-      <img src={logoSrc} />,
+export const runtime = "edge";
+export const GET = async (req) => {
+  const { searchParams } = new URL(req.url);
+  const projectId = searchParams.get("projectId");
+    try {
+        const imageData = await fetch(new URL('./images/hero.jpg', import.meta.url).toString()).then(
+            (res) => res.arrayBuffer()
+        );
+        if (!projectId){
+          return new ImageResponse(
+            (    
+             
+                    <img 
+         
+                        src={imageData} 
+                        style={{
+                          borderRadius: '50%'
+                      }} 
+                                       />
+   
+                    
+            ),
+            {
+                width: 1200,
+                height: 1023,
+            }
+        );
+        }
+        if(projectId){
+          const project = projectsData.filter((project) => project.id === projectId);
+          // const fontData = await fetch(
+          //   new URL("./images/KacstLetter.ttf", import.meta.url)
+          // ).then((res) => res.arrayBuffer());
+          const imageData = await fetch(
+            new URL(`../../../public/${project[0].imgs[0].img}`, import.meta.url)
+          ).then((res) => res.arrayBuffer());
+      
+          return new ImageResponse(
+           
+            (
+            
+              <img 
+         
+                        src={imageData} 
+                        alt={project[0].Title}
 
-      {
-        width: 1200,
-        height: 630,
-      }
-    );
-  }
-  if (!pId) {
-    return new ImageResponse(
-      (
-        <img
-          width="1200"
-          height="1023"
-          src={`https://vglomomotvy8urx2.public.blob.vercel-storage.com/DSC04884_New_1-new%20(1)-min%20(1)-DH2YusNaB5GeE8nhhxkV8yLLFYAkfO.jpg`}
-        />
-      ),
-      {
-        width: 1200,
-        height: 1023,
-      }
-    );
-  }
+                        
+                                       />
+           
+            ),
+                                      
+            
+            
+                                       
+
+      
+            
+          );
+         
+        }
+         
+        
+
+    } catch (e) {
+        return new Response(`Failed to generate the OG image. Error ${e.message}`, {
+            status: 500,
+        })
+    }
 }

@@ -22,7 +22,7 @@ export const generateMetadata = async ({ params }) => {
       title: project[0].Title,
       description: project[0].Description_All,
 
-      images: `${ENV.NEXT_PUBLIC_WEBSITE_URL}/api/og`,
+      images: `${ENV.NEXT_PUBLIC_WEBSITE_URL}/api/og?projectId=${id}`,
     },
   };
 };
