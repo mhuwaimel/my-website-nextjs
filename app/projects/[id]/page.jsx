@@ -12,7 +12,7 @@ export const generateMetadata = async ({ params }) => {
   return {
     title: project[0].Title,
     description: project[0].Description_All,
-
+    keywords: project[0].keyWords,
     url: `${ENV.NEXT_PUBLIC_WEBSITE_URL}/projects/${id}`,
     twitterCard: "summary",
 
