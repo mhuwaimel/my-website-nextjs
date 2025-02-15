@@ -10,7 +10,7 @@ function HeroDescription({ heroDescriptions }) {
       whileInView="show"
       viewport={{ once: true }}
       className="max-w-xl py-5 mx-auto leading-8 tracking-normal font-[Lateef]  
-              text-3xl text-slate-600  md:text-4xl"
+              text-3xl text-slate-600  md:text-3xl"
     >
       <TextWriter text={heroDescriptions} delay={0.037} />
     </motion.p>
