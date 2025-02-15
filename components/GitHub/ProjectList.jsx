@@ -8,15 +8,18 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
+  CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, RefreshCw, Star, GitFork } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { toast } from "sonner";
+import { BorderBeam } from "../magicui/border-beam";
 
 export default function GitHubProjectList() {
-  const { toast } = useToast();
+
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -47,14 +50,12 @@ export default function GitHubProjectList() {
       const newSet = new Set(prev);
       if (newSet.has(repoId)) {
         newSet.delete(repoId);
-        toast({
-          title: "Repository Unstarred",
+        toast.info(`Repository Unstarred`, {
           description: `You've unstarred ${repoName}`,
         });
       } else {
         newSet.add(repoId);
-        toast({
-          title: "Repository Starred",
+        toast.success("Repository Starred", {
           description: `You've starred ${repoName}`,
         });
       }
@@ -67,7 +68,7 @@ export default function GitHubProjectList() {
   }, []);
 
   return (
-    <div className="py-4 mt-2 sm:py-10 sm:mt-10">
+    <div className="py-4 mt-2 sm:py-6 sm:mt-8">
       <div className="text-center">
         <h2 className="font-general-medium font-[Mada] text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
           آخر المشاريع
@@ -88,6 +89,7 @@ export default function GitHubProjectList() {
         }}
       >
         <AnimatePresence>
+         
           {repos.map((repo) => (
             <motion.div
               key={repo.id}
@@ -101,6 +103,7 @@ export default function GitHubProjectList() {
               <Card
                 className="h-full flex flex-col bg-white  
               shadow-lg cursor-pointer animate_top rounded-xl hover:shadow-xl
+              relative overflow-hidden
               "
               >
                 <CardHeader>
@@ -152,6 +155,13 @@ export default function GitHubProjectList() {
                     </Link>
                   </Button>
                 </CardContent>
+                <BorderBeam
+        duration={6}
+        delay={3}
+        size={400}
+     
+        
+      />
               </Card>
             </motion.div>
           ))}

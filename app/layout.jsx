@@ -14,9 +14,10 @@ import GoogleAnalyticsWithSuspense from "@/components/GoogleAnalytics";
 import Navbar from "@/components/Shared/NavBar";
 import ScrollToTop from "@/components/Shared/ScrollToTop";
 import Footer from "@/components/Shared/Footer";
-import { Toaster } from "@/components/ui/toaster";
+
 import { ENV } from "@/lib/constant";
 import { siteConfig } from "@/config/seo";
+import { Toaster } from "sonner";
 
 export const metadata = {
   applicationName: siteConfig.name,
@@ -121,7 +122,7 @@ export default function RootLayout({ children }) {
           </footer>
         </div>
 
-        <Toaster />
+        <Toaster    richColors position="top-center" />
         <GoogleAnalyticsWithSuspense ga_id={googleAnId} />
       </body>
     </html>
