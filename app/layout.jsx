@@ -1,13 +1,4 @@
-import {
-  almarai,
-  cairo,
-  changa,
-  lateef,
-  mada,
-  rakkas,
-  tajawal,
-  vibes,
-} from "@/config/fonts";
+
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 
@@ -19,6 +10,7 @@ import { ENV } from "@/lib/constant";
 import { siteConfig } from "@/config/seo";
 import { Toaster } from "sonner";
 import Script from 'next/script'
+import { almarai, cairo, changa, lateef, mada, rakkas, tajawal, vibes } from "@/config/fonts";
 
 export const metadata = {
   applicationName: siteConfig.name,
@@ -91,9 +83,10 @@ export default function RootLayout({ children }) {
        <Script defer  src="https://cloud.umami.is/script.js" data-website-id="3f49fb09-bc89-49e7-9897-061308b825c6" />
       </head>
       <body
-        className={`${cairo.variable} ${lateef.variable} 
-          ${mada.variable} ${rakkas.variable} ${vibes.variable}
-          ${changa.variable} ${almarai.variable} ${tajawal.variable}
+        className={`${cairo.className} ${lateef.className} 
+          ${mada.className} ${rakkas.className} ${vibes.className}
+          ${changa.className} ${almarai.className} ${tajawal.className}
+         
           flex flex-col h-screen  antialiased`}
         suppressHydrationWarning={true}
       >
