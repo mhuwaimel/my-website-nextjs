@@ -200,6 +200,8 @@ export default function ContactForm() {
               <div className="mt-4">
                 <Button
                   type="submit"
+                  id="contact-button"
+                  data-umami-event="Contact button"
                   className="w-full font-[Cairo]   text-sm font-medium text-center text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                 >
                   {loading && loading ? (

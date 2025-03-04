@@ -1,4 +1,3 @@
-
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 
@@ -9,8 +8,17 @@ import Footer from "@/components/Shared/Footer";
 import { ENV } from "@/lib/constant";
 import { siteConfig } from "@/config/seo";
 import { Toaster } from "sonner";
-import Script from 'next/script'
-import { almarai, cairo, changa, lateef, mada, rakkas, tajawal, vibes } from "@/config/fonts";
+import Script from "next/script";
+import {
+  almarai,
+  cairo,
+  changa,
+  lateef,
+  mada,
+  rakkas,
+  tajawal,
+  vibes,
+} from "@/config/fonts";
 
 export const metadata = {
   applicationName: siteConfig.name,
@@ -80,7 +88,11 @@ export default function RootLayout({ children }) {
     <html dir="rtl" lang="ar">
       <head>
         <meta name="msvalidate.01" content="9C0D081B10D033EC5667B464D310B54F" />
-       <Script defer  src="https://cloud.umami.is/script.js" data-website-id="3f49fb09-bc89-49e7-9897-061308b825c6" />
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="3f49fb09-bc89-49e7-9897-061308b825c6"
+        />
       </head>
       <body
         className={`${cairo.className} ${lateef.className} 
@@ -117,7 +129,7 @@ export default function RootLayout({ children }) {
           </footer>
         </div>
 
-        <Toaster    richColors position="top-center" />
+        <Toaster richColors position="top-center" />
         {/* <GoogleAnalyticsWithSuspense ga_id={googleAnId} /> */}
       </body>
     </html>

@@ -18,6 +18,8 @@ export default function AnimatedDownloadButton() {
   return (
     <div className="flex items-center justify-center ">
       <motion.button
+        id="download-resume"
+        data-umami-event="Download resume"
         onClick={openResume}
         className="flex items-center justify-center px-6 py-3 font-semibold text-white rounded-full focus:outline-none"
         style={{ backgroundColor: "#6936f5" }}
