@@ -34,6 +34,12 @@ export default function sitemap() {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: "https://mohammedh.sa/github",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
     ...projectsURL,
   ];
 }
