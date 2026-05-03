@@ -1,17 +1,28 @@
 const resumeData = [
   {
     Id: 1,
-    position: "رئيس الفريق التنفيذي للعمليات الإشرافية",
+    position: "مشرف إدارة مدرسية   ",
     Place: "",
-    Description:
-      "مكتب التعليم بمحافظة الرين –  إدارة التعليم بمحافظة القويعية.",
-    Start: "2025",
+    Description: "الإدارة العامة للتعليم بمنطقة الرياض",
+
+    Start: "2026",
     EndJob: "حالياً",
     location: null,
     image: null,
   },
   {
     Id: 2,
+    position: "رئيس الفريق التنفيذي للعمليات الإشرافية",
+    Place: "",
+    Description:
+      "مكتب التعليم بمحافظة الرين –  إدارة التعليم بمحافظة القويعية.",
+    Start: "2025",
+    EndJob: "2026",
+    location: null,
+    image: null,
+  },
+  {
+    Id: 3,
     position: "مدير قسم أداء التعليم",
     Place: "",
     Description:
@@ -22,7 +33,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 3,
+    Id: 4,
     position: "مساعد مدير المكتب للشؤون التعليمية",
     Place: "",
     Description:
@@ -34,7 +45,7 @@ const resumeData = [
   },
 
   {
-    Id: 4,
+    Id: 5,
     position: "عضو لجنة التنمية المحلية ",
     Place: "",
     Description:
@@ -45,7 +56,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 5,
+    Id: 6,
     position: "مشرف تربوي ",
     Place: "",
     Description:
@@ -56,7 +67,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 6,
+    Id: 7,
     position: "معلم حاسب آلي",
     Place: "",
     Description: "وزارة التعليم – إدارة التعليم بمحافظة القويعية ",
@@ -66,7 +77,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 7,
+    Id: 8,
     position: "مبرمج حاسب آلي ",
     Place: "شركة السلام للطائرات",
     Description:
@@ -77,7 +88,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 8,
+    Id: 9,
     position: " مهندس حاسب آلي ",
     Place: "شركة الإلكترونيات المتقدمة SAMI ",
     Description:
@@ -88,7 +99,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 9,
+    Id: 10,
     position: "اخصائي نظم معلومات ",
     Place: "القوات الجوية الملكية السعودية ",
     Description: "القوات الجوية الملكية السعودية –هيئة إدارة القوات الجوية ",
@@ -98,7 +109,7 @@ const resumeData = [
     image: null,
   },
   {
-    Id: 10,
+    Id: 11,
     position: "اخصائي تقنية معلومات",
     Place: "الشركة الوطنية لصناعة البطاريات NBC ",
     Description:
