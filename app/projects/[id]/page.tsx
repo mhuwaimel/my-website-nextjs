@@ -1,0 +1,38 @@
+import ProjectGallery from "@/components/Projects/project-gallery";
+import projectsData from "@/data/projects";
+import { ENV } from "@/lib/constant";
+
+interface ProjectDetailsProps {
+  params: Promise<{ id: string }>;
+}
+
+export const generateMetadata = async ({ params }: ProjectDetailsProps) => {
+  // read route params
+
+  const { id } = await params;
+
+  const project = projectsData.filter((project) => project.id === id);
+
+  return {
+    title: project[0].Title,
+    description: project[0].Description_All,
+    keywords: project[0].keyWords,
+    url: `${ENV.NEXT_PUBLIC_WEBSITE_URL}/projects/${id}`,
+    twitterCard: "summary",
+
+    openGraph: {
+      type: "website",
+      url: `/projects/${id}`,
+      title: project[0].Title,
+      description: project[0].Description_All,
+
+      images: `${ENV.NEXT_PUBLIC_WEBSITE_URL}/api/og?projectId=${id}`,
+    },
+  };
+};
+
+export default async function ProjectDetails({ params }: ProjectDetailsProps) {
+  const { id } = await params;
+
+  return <ProjectGallery projectId={id} />;
+}
