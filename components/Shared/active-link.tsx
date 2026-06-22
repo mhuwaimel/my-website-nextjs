@@ -1,49 +1,61 @@
 "use client";
-import { type ReactNode, useState } from "react";
+
+import { type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 
 interface ActiveLinkProps {
   href: string;
   children: ReactNode;
   exact?: boolean;
+  onClick?: () => void;
 }
 
+/**
+ * Token-aware active link with an animated underline. Uses logical positioning
+ * (inset-inline-start) so the underline anchors to the correct edge in both
+ * RTL and LTR.
+ */
 export default function ActiveLink({
   href,
   children,
   exact = false,
+  onClick,
 }: ActiveLinkProps) {
   const pathname = usePathname();
-  const isActive = exact
-    ? pathname === href
-    : pathname.startsWith(href) && (href === "/" ? pathname === "/" : true);
-  const [isHovered, setIsHovered] = useState(false);
+  const isActive =
+    href === "/"
+      ? pathname === "/"
+      : exact
+      ? pathname === href
+      : pathname.startsWith(href);
 
   return (
     <Link
       href={href}
-      className={`relative px-4 py-2  text-lg font-bold transition-colors duration-200 font-[cairo] ${
-        isActive ? "text-[#6936f5]" : "text-gray-700 hover:text-[#6936f5]"
-      }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
+      className="group relative block rounded-[10px] px-[15px] py-[9px] text-[0.95rem] font-bold transition-colors duration-200"
+      style={{ color: isActive ? "var(--primary)" : "var(--muted)" }}
     >
-      {children}
-      {isActive && (
-        <motion.div
-          className="absolute bottom-0 left-0 h-0.5 bg-[#6936f5]"
-          initial={{ width: "0%", x: "50%" }}
-          animate={{ width: "100%", x: "0%" }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        />
-      )}
-      <motion.div
-        className="absolute -inset-1 rounded-lg bg-[#6936f5]"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: isHovered ? 0.1 : 0, scale: isHovered ? 1 : 0.95 }}
-        transition={{ duration: 0.2 }}
+      <span
+        className="absolute inset-0 rounded-[10px] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        style={{ background: "var(--primary-soft)" }}
+        aria-hidden="true"
+      />
+      <span
+        className="relative transition-colors duration-200 group-hover:!text-[var(--primary)]"
+        style={{ color: isActive ? "var(--primary)" : "var(--muted)" }}
+      >
+        {children}
+      </span>
+      <span
+        className="absolute bottom-[3px] h-[2px] rounded-full transition-all duration-300"
+        style={{
+          insetInlineStart: "15px",
+          width: isActive ? "calc(100% - 30px)" : 0,
+          background: "var(--primary)",
+        }}
+        aria-hidden="true"
       />
     </Link>
   );

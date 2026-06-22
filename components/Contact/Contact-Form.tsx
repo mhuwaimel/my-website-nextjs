@@ -1,262 +1,253 @@
 "use client";
-import { Phone, Mail } from "lucide-react";
 
-import { useToast } from "@/hooks/use-toast";
 import { type FormEvent, useRef, useState } from "react";
-import { Button } from "../ui/button";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
-type ContactErrors = Partial<Record<"name" | "email" | "subject" | "message", boolean>>;
+import { StarMark } from "@/components/Shared/StarMark";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
+
+type ContactErrors = Partial<
+  Record<"name" | "email" | "subject" | "message", boolean>
+>;
 
 export default function ContactForm() {
-  const { toast } = useToast();
-
+  const { t } = usePreferences();
   const form = useRef<HTMLFormElement | null>(null);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<ContactErrors>({});
 
-  //   Setting button text
-  const [buttonText, setButtonText] = useState("Send");
-
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [showFailureMessage, setShowFailureMessage] = useState(false);
-  const handleValidation = () => {
-    const tempErrors: ContactErrors = {};
-    let isValid = true;
-
-    if (name.length <= 0) {
-      tempErrors["name"] = true;
-      isValid = false;
-    }
-    if (email.length <= 0) {
-      tempErrors["email"] = true;
-      isValid = false;
-    }
-    if (subject.length <= 0) {
-      tempErrors["subject"] = true;
-      isValid = false;
-    }
-    if (message.length <= 0) {
-      tempErrors["message"] = true;
-      isValid = false;
-    }
-
-    setErrors({ ...tempErrors });
-    console.log("errors", errors);
-    return isValid;
+  const validate = () => {
+    const e: ContactErrors = {};
+    if (!name) e.name = true;
+    if (!email) e.email = true;
+    if (!subject) e.subject = true;
+    if (!message) e.message = true;
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
-  //   const [form, setForm] = useState(false);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    let isValidForm = handleValidation();
-
-    if (isValidForm) {
-      setLoading(true);
+  const handleSubmit = async (ev: FormEvent<HTMLFormElement>) => {
+    ev.preventDefault();
+    if (!validate()) return;
+    setLoading(true);
+    try {
       const res = await fetch("/api/email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          name: name,
-          subject: subject,
-          message: message,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
       });
-
       const { error } = (await res.json()) as { error?: string };
-      if (error) {
-        console.log(error);
-        setShowSuccessMessage(false);
-        setShowFailureMessage(true);
-        setButtonText("Send");
-        setLoading(false);
-        // Reset form fields
-        setName("");
-        setEmail("");
-        setMessage("");
-        setSubject("");
-        return;
-      }
-      // setShowSuccessMessage(true);
-      toast({
-        variant: "success",
-        title: "تــم",
-        description: "شكراً لتواصلك ,تم ارسال الرسالة ",
-      });
-      setShowFailureMessage(false);
-      setLoading(false);
-      // Reset form fields
+      if (error) throw new Error(error);
+      toast.success("تــم", { description: "شكراً لتواصلك، تم إرسال الرسالة" });
+      setSent(true);
       setName("");
       setEmail("");
-      setMessage("");
       setSubject("");
+      setMessage("");
+      setTimeout(() => setSent(false), 2600);
+    } catch {
+      toast.error("عفواً", {
+        description: "حدث خطأ أثناء الإرسال، حاول لاحقاً",
+      });
+    } finally {
+      setLoading(false);
     }
-    console.log(name, email, subject, message);
   };
+
+  const Err = ({ show }: { show?: boolean }) =>
+    show ? (
+      <p className="mt-1 text-sm" style={{ color: "#ef4444" }}>
+        {t.form.required}
+      </p>
+    ) : null;
+
   return (
-    <section className="container bg-white dark:bg-gray-900">
-      <div className="w-full px-6 py-12 mx-auto">
-        <div>
-          <h1 className="mt-2 text-2xl font-[Mada] font-semibold text-gray-800 md:text-3xl dark:text-white">
-            تواصل معي Contact us
-          </h1>
-        </div>
-        <div className="grid w-full grid-cols-1 gap-12 mt-10 lg:grid-cols-2 ">
-          <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-8">
+    <section id="contact" className="py-16 pb-20">
+      <div
+        className="relative overflow-hidden rounded-[26px] p-[clamp(26px,4vw,52px)]"
+        style={{
+          background: "var(--surface)",
+          border: "1px solid var(--border)",
+          boxShadow: "var(--shadow)",
+        }}
+      >
+        <div className="relative grid items-start gap-12 md:grid-cols-[1.2fr_1fr]">
+          {/* Form */}
+          <div>
+            <div
+              className="mb-2.5 inline-flex items-center gap-[9px] text-[0.82rem] font-extrabold tracking-[.06em]"
+              style={{ color: "var(--primary)" }}
+            >
+              <StarMark size={13} />
+              {t.sections.contactKicker}
+            </div>
+            <h2 className="m-0 mb-[26px] font-[Cairo] text-[clamp(1.7rem,4vw,2.5rem)] font-black">
+              {t.sections.contactTitle}
+            </h2>
+
             <form ref={form} onSubmit={handleSubmit}>
-              <div className="-mx-2 md:items-center md:flex ">
-                <div className="flex-1 px-2">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-200 font-[Cairo]"
-                    htmlFor="name"
+              <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <label className="block">
+                  <span
+                    className="mb-[7px] block text-[0.85rem] font-bold"
+                    style={{ color: "var(--muted)" }}
                   >
-                    الاســم
-                  </label>
+                    {t.form.name}
+                  </span>
                   <input
-                    type="text"
+                    className="field"
                     value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                    name="name"
-                    placeholder="اسمك الكريم"
-                    className="block w-full px-5 py-2.5 mt-2 font-[Cairo] text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder={t.form.phName}
                   />
-                  {errors?.name && (
-                    <p className="text-sm text-red-500">الاسم مطلوب</p>
-                  )}
-                </div>
-                <div className="flex-1 px-2 mt-4 md:mt-0 ">
-                  <label
-                    className="block mb-2 text-sm text-gray-600 dark:text-gray-200 font-[Cairo]"
-                    htmlFor="email"
+                  <Err show={errors.name} />
+                </label>
+                <label className="block">
+                  <span
+                    className="mb-[7px] block text-[0.85rem] font-bold"
+                    style={{ color: "var(--muted)" }}
                   >
-                    البريد الالكتروني
-                  </label>
+                    {t.form.email}
+                  </span>
                   <input
                     type="email"
-                    name="email"
+                    className="field"
                     value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                    }}
-                    placeholder="البريد الإلكتروني"
-                    className="block font-[Cairo] w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={t.form.phEmail}
                   />
-                  {errors?.email && (
-                    <p className="text-sm text-red-500">
-                      البريد الالكتروني مطلوب
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="mt-4">
-                <label
-                  className="block mb-2 text-sm text-gray-600 dark:text-gray-200 font-[Cairo]"
-                  htmlFor="subject"
-                >
-                  الموضوع
+                  <Err show={errors.email} />
                 </label>
+              </div>
+              <label className="mb-4 block">
+                <span
+                  className="mb-[7px] block text-[0.85rem] font-bold"
+                  style={{ color: "var(--muted)" }}
+                >
+                  {t.form.subject}
+                </span>
                 <input
-                  type="text"
-                  name="subject"
+                  className="field"
                   value={subject}
-                  onChange={(e) => {
-                    setSubject(e.target.value);
-                  }}
-                  placeholder="الموضوع"
-                  className="block font-[Cairo] w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  onChange={(e) => setSubject(e.target.value)}
+                  placeholder={t.form.phSubject}
                 />
-                {errors?.subject && (
-                  <p className="text-sm text-red-500">موضوع الرسالة مطلوب</p>
-                )}
-              </div>
-              <div className="w-full mt-4">
-                <label
-                  className="block mb-2 text-sm text-gray-600 dark:text-gray-200 font-[Cairo]"
-                  htmlFor="message"
+                <Err show={errors.subject} />
+              </label>
+              <label className="mb-5 block">
+                <span
+                  className="mb-[7px] block text-[0.85rem] font-bold"
+                  style={{ color: "var(--muted)" }}
                 >
-                  الرسالة
-                </label>
+                  {t.form.message}
+                </span>
                 <textarea
-                  name="message"
-                  className="block font-[Cairo] w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                  placeholder="اكتب رسالتك هنا"
+                  className="field min-h-[120px] resize-y"
                   value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                  }}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder={t.form.phMessage}
                 />
-                {errors?.message && (
-                  <p className="text-sm text-red-500">محتوى الرسالة مطلوب</p>
+                <Err show={errors.message} />
+              </label>
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex items-center gap-[9px] rounded-[13px] border-none px-[30px] py-3.5 text-[0.98rem] font-extrabold transition-transform hover:-translate-y-[3px] disabled:opacity-70"
+                style={{
+                  background: "var(--primary)",
+                  color: "var(--on-primary)",
+                  boxShadow: "0 12px 28px -10px var(--primary)",
+                }}
+              >
+                {loading ? (
+                  <Loader2 className="animate-spin" size={18} />
+                ) : sent ? (
+                  t.form.sent
+                ) : (
+                  t.form.send
                 )}
-              </div>
-              <div className="mt-4">
-                <Button
-                  type="submit"
-                  id="contact-button"
-                  data-umami-event="Contact button"
-                  className="w-full font-[Cairo]   text-sm font-medium text-center text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-                >
-                  {loading && loading ? (
-                    <Loader2></Loader2>
-                  ) : (
-                    <span>إرســال</span>
-                  )}
-                </Button>
-              </div>
-              <div className="text-left">
-                {showSuccessMessage && (
-                  <p className="my-2 text-sm font-semibold text-green-500">
-                    شكراً لتواصلك ,تم ارسال الرسالة
-                  </p>
-                )}
-                {showFailureMessage && (
-                  <p className="text-red-500">عفواً هناك خطأ</p>
-                )}
-              </div>
+              </button>
             </form>
           </div>
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <div>
-              <span className="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
-                <Mail></Mail>
-              </span>
-              <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">
-                Email
-              </h2>
 
-              <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">
-                alhuwaimel.m@gmail.com
-              </p>
-            </div>
-
-            <div>
-              <span className="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
-                <Phone></Phone>
-              </span>
-              <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">
-                Phone
-              </h2>
-
-              <div>
-                <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">
-                  <a href="tel:+966505436532"> +966 505436532</a>
-                </p>
-              </div>
-            </div>
+          {/* Info */}
+          <div className="flex flex-col gap-3.5">
+            <InfoCard
+              label={t.contactInfo.email}
+              value="alhuwaimel.m@gmail.com"
+              href="mailto:alhuwaimel.m@gmail.com"
+              ltr
+            />
+            <InfoCard
+              label={t.contactInfo.phone}
+              value="+966 50 543 6532"
+              href="tel:+966505436532"
+              ltr
+            />
+            <InfoCard
+              label={t.contactInfo.location}
+              value={t.contactInfo.locationValue}
+            />
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function InfoCard({
+  label,
+  value,
+  href,
+  ltr,
+}: {
+  label: string;
+  value: string;
+  href?: string;
+  ltr?: boolean;
+}) {
+  const inner = (
+    <>
+      <span
+        className="grid h-[42px] w-[42px] shrink-0 place-items-center rounded-[11px]"
+        style={{ background: "var(--primary-soft)" }}
+      >
+        <StarMark size={18} />
+      </span>
+      <span>
+        <span
+          className="block text-[0.78rem] font-semibold"
+          style={{ color: "var(--muted)" }}
+        >
+          {label}
+        </span>
+        <span className="block font-bold" dir={ltr ? "ltr" : undefined}>
+          {value}
+        </span>
+      </span>
+    </>
+  );
+  const cls =
+    "flex items-center gap-3.5 rounded-[15px] p-[18px] no-underline transition-all duration-200 hover:-translate-y-0.5";
+  const style = {
+    background: "var(--bg)",
+    border: "1px solid var(--border)",
+    color: "var(--fg)",
+  };
+  return href ? (
+    <a href={href} className={cls} style={style}>
+      {inner}
+    </a>
+  ) : (
+    <div className={cls} style={style}>
+      {inner}
+    </div>
   );
 }

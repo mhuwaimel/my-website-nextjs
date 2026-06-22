@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, type TargetAndTransition } from "framer-motion";
 import { ChevronUpCircleIcon } from "lucide-react";
 
 function ScrollToTop() {
@@ -30,7 +30,7 @@ function ScrollToTop() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const jumpAnimation = {
+  const jumpAnimation: TargetAndTransition = {
     y: [0, -10, 0, -10, 0],
     transition: {
       y: {

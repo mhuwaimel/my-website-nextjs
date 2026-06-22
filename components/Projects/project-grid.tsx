@@ -1,29 +1,37 @@
+"use client";
+
 import projectsData from "@/data/projects";
-import ProjectSingle from "./project-single";
-
 import ProjectItem from "./ProjectItem";
-const ProjectsGrid = () => {
+import { Reveal } from "@/components/Shared/Reveal";
+import { StarMark } from "@/components/Shared/StarMark";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
+
+export default function ProjectsGrid() {
+  const { t } = usePreferences();
+
   return (
-    <section className="py-4 mt-3 sm:py-10 sm:mt-10">
-      <div className="text-center">
-        <p className="font-general-medium font-[Mada] text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
-          معرض الأعمال
+    <section id="work" className="py-16">
+      <Reveal className="mb-10">
+        <div
+          className="mb-2.5 inline-flex items-center gap-[9px] text-[0.82rem] font-extrabold tracking-[.06em]"
+          style={{ color: "var(--primary)" }}
+        >
+          <StarMark size={13} />
+          {t.sections.workKicker}
+        </div>
+        <h2 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
+          {t.sections.workTitle}
+        </h2>
+        <p className="m-0 mt-2.5 max-w-[54ch] text-[1.02rem]" style={{ color: "var(--muted)" }}>
+          {t.sections.workSub}
         </p>
-      </div>
+      </Reveal>
 
-      {/* <div className="mt-10 sm:mt-16">
-        <h3 className="mb-3 text-center font-general-regular text-secondary-dark dark:text-ternary-light text-md sm:text-xl"></h3>
-      </div> */}
-
-      <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-5">
-        {projectsData &&
-          projectsData.map((project, index) => (
-            // <ProjectSingle key={index} {...project} />
-            <ProjectItem key={index} {...project} />
-          ))}
+      <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
+        {projectsData.map((project, index) => (
+          <ProjectItem key={project.id ?? index} {...project} />
+        ))}
       </div>
     </section>
   );
-};
-
-export default ProjectsGrid;
+}

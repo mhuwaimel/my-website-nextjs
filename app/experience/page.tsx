@@ -3,12 +3,23 @@ import resumeData from "@/data/experience";
 
 export const metadata = {
   title: "الخبرات المهنية",
-
-  url: "https://www.mohammedh.sa/experience",
-  keywords:['رئيس الفريق التنفيذي للعمليات الإشرافية', 'مدير قسم أداء التعليم', 'مساعد مدير المكتب للشؤون التعليمية', 'عضو لجنة التنمية المحلية ', 'مشرف تربوي ', 'معلم حاسب آلي', 'مبرمج حاسب آلي ', ' مهندس حاسب آلي ', 'اخصائي نظم معلومات ', 'اخصائي تقنية معلومات', 'محمد الهويمل', 'محمد الهويمل ويب', 'محمد الهويمل موقع ويب'],
-  
-
+  description:
+    "خبرات محمد عبدالعزيز الهويمل المهنية في البرمجة، التعليم، الإشراف التربوي، وقيادة المبادرات الرقمية.",
+  alternates: { canonical: "/experience" },
+  openGraph: {
+    title: "الخبرات المهنية | محمد الهويمل",
+    description:
+      "مسيرة مهنية تجمع بين تطوير البرمجيات والعمل التعليمي والإشراف التربوي.",
+    url: "/experience",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "الخبرات المهنية | محمد الهويمل",
+    description:
+      "مسيرة مهنية تجمع بين تطوير البرمجيات والعمل التعليمي والإشراف التربوي.",
+  },
 };
+
 export default function ExperiencePage() {
   return <ExperienceCard resumeData={resumeData} />;
 }

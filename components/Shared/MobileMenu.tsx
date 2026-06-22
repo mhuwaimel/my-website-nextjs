@@ -1,68 +1,49 @@
-import React from "react";
-import { AlignLeft } from "lucide-react";
-import MobileActiveLink from "./mobile-active-link";
+"use client";
 
-interface MenuItem {
-  id: number;
-  name: string;
-  url: string;
-  subMenu?: MenuItem[];
-}
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useNavItems } from "./Menu";
 
-interface MobileMenuProps {
-  showSubMenu: boolean;
-  setShowSubMenu: React.Dispatch<React.SetStateAction<boolean>>;
-  setMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const MobileMenu = ({
-  showSubMenu,
-  setShowSubMenu,
+export default function MobileMenu({
   setMobileMenu,
-}: MobileMenuProps) => {
-  const menuData: MenuItem[] = [
-    { id: 1, name: "عــني", url: "/" },
-    { id: 2, name: "الخبرات المهنية", url: "/experience" },
-    { id: 3, name: "أعمـالي", url: "/projects" },
-    { id: 4, name: "GitHub", url: "/github" },
-    { id: 5, name: "تـواصل", url: "/contact" },
-  ];
+}: {
+  setMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+  const items = useNavItems();
+  const pathname = usePathname();
 
   return (
     <ul
-      className="flex flex-col pt-2 md:hidden  absolute top-[50px] 
-    right-0 w-full h-[calc(100vh-50px)]  bg-white border-t text-black"
+      className="absolute start-0 end-0 top-[64px] flex h-[calc(100vh-64px)] w-full flex-col gap-1 p-4 md:hidden"
+      style={{ background: "var(--bg)", borderTop: "1px solid var(--border)" }}
     >
-      {menuData.map((item) => {
+      {items.map((item) => {
+        const isActive = item.url === "/" ? pathname === "/" : pathname.startsWith(item.url);
         return (
-          <React.Fragment key={item.id}>
-            {item?.subMenu ? (
-              <li
-                aria-label={item.name}
-                className="relative flex flex-col px-5 py-4 border-b cursor-pointer"
-                onClick={() => setShowSubMenu(!showSubMenu)}
-              >
-                <div className="flex items-center justify-between">
-                  {item.name}
-                  <AlignLeft size={14} />
-                </div>
-              </li>
-            ) : (
-              <li
-                className="px-5 py-4 transition duration-200 ease-in-out border-b hover:scale-105"
-                onClick={() => setMobileMenu(false)}
-              >
-                {/* <Link className="font-[Changa] text-base " href={item.url}>
-                  {item.name}
-                </Link> */}
-                <MobileActiveLink href={item.url}>{item.name}</MobileActiveLink>
-              </li>
-            )}
-          </React.Fragment>
+          <li key={item.id}>
+            <Link
+              href={item.url}
+              onClick={() => setMobileMenu(false)}
+              className="flex items-center gap-3 rounded-xl px-5 py-4 text-lg font-bold transition-colors"
+              style={{
+                color: isActive ? "var(--primary)" : "var(--fg)",
+                background: isActive ? "var(--primary-soft)" : "transparent",
+              }}
+            >
+              <span
+                className="star8 inline-block"
+                style={{
+                  width: 14,
+                  height: 14,
+                  background: isActive ? "var(--primary)" : "var(--border)",
+                }}
+                aria-hidden="true"
+              />
+              {item.label}
+            </Link>
+          </li>
         );
       })}
     </ul>
   );
-};
-
-export default MobileMenu;
+}

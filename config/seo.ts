@@ -1,18 +1,18 @@
 export const siteConfig = {
   title: "محمد الهويمل",
-  name: "محمد عبدالعزيز الهويمل  Mohammed AlHuwimmel",
+  name: "محمد عبدالعزيز الهويمل",
   longTitle: "محمد عبدالعزيز الهويمل",
 
   description:
-    "انطلقت رحلتي بست سنوات في عالم البرمجة .... ثم مثلها في محاضن التربية والتعليم معلماً...... والآن منذ خمس سنوات وأنا أمارس دوري القيادي والإشرافي التعليمي",
+    "محمد عبدالعزيز الهويمل، مبرمج ومشرف تربوي يجمع بين تطوير أنظمة الويب وقيادة الفرق التعليمية وتحسين العمليات الرقمية في الميدان التعليمي.",
   ogDescription:
-    "انطلقت رحلتي بست سنوات في عالم البرمجة .... ثم مثلها في محاضن التربية والتعليم معلماً...... والآن منذ خمس سنوات وأنا أمارس دوري القيادي والإشرافي التعليمي......",
+    "محمد عبدالعزيز الهويمل، مبرمج ومشرف تربوي يجمع بين تطوير أنظمة الويب وقيادة الفرق التعليمية وتحسين العمليات الرقمية في الميدان التعليمي.",
   ogSiteName: "محمد بن عبدالعزيز الهويمل",
-  ogUrl: "https://www.mohammedh.sa", // Replace with your URL
-  ogImageUrl: "/assets/hero.jpg", // Replace with your image URL
+  ogUrl: "https://mohammedh.sa",
+  ogImageUrl: "/assets/hero.jpg",
   verification: "WVx7eEsjASR60PqML6j_K3wSyROLR5qqp8905y-Zv8Y",
   bing_verification: "9C0D081B10D033EC5667B464D310B54F",
-  url: "https://mohammadh.sa",
+  url: "https://mohammedh.sa",
   keywords: [
     "الهويمل",
     "محمد عبدالعزيز الهويمل",
@@ -44,7 +44,7 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/mhuwaimel",
-    site: "https://mohammadh.sa",
+    site: "https://mohammedh.sa",
   },
   mainNav: [
     {

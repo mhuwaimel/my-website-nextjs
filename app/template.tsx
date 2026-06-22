@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import useScrollProgress from "@/hooks/useScrollProgress";
 
 export default function Template({ children }: { children: ReactNode }) {
-  const completion = useScrollProgress();
   return (
     <motion.div
       initial={{ y: 20, opacity: 0 }}
@@ -13,10 +12,6 @@ export default function Template({ children }: { children: ReactNode }) {
       transition={{ ease: "easeInOut", duration: 0.46 }}
     >
       {children}
-      <span
-        className="fixed z-50 bg-[#6936f5] w-2 top-0 right-0 bottom-0 transition-all duration-700"
-        style={{ transform: `translateY(${completion - 100}%)` }}
-      ></span>
     </motion.div>
   );
 }

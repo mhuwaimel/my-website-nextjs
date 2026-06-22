@@ -1,27 +1,24 @@
 import ProjectsGrid from "@/components/Projects/project-grid";
-import { siteConfig } from "@/config/seo";
-import { ENV } from "@/lib/constant";
 
 export const metadata = {
-  title: "مشاريعي",
-
-  canonical: "/projects",
-  url: "https://mohammedh.sa/projects/",
-
+  title: "المشاريع",
+  description:
+    "مشاريع وأنظمة ويب تعليمية وتقنية طورها محمد عبدالعزيز الهويمل لخدمة التعليم والإشراف وتحسين العمليات الرقمية.",
+  alternates: { canonical: "/projects" },
   openGraph: {
-    type: "website",
-    url: siteConfig.url + "/projects",
-    title: "مشاريعي",
-    description: "مشاريع موقعي والتي تمتلكها محمد الهويمل",
-    images: `${ENV.NEXT_PUBLIC_WEBSITE_URL}/api/og`,
+    title: "المشاريع | محمد الهويمل",
+    description:
+      "نماذج من المشاريع التقنية وأنظمة الويب التعليمية التي طورها محمد عبدالعزيز الهويمل.",
+    url: "/projects",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "المشاريع | محمد الهويمل",
+    description:
+      "نماذج من المشاريع التقنية وأنظمة الويب التعليمية التي طورها محمد عبدالعزيز الهويمل.",
   },
 };
-export default function ProjectPage() {
-  return (
-    <div className="container mx-auto">
-      <div className="flex flex-col-reverse py-5 mx-auto lg:flex-row">
-        <ProjectsGrid></ProjectsGrid>
-      </div>
-    </div>
-  );
+
+export default function ProjectsPage() {
+  return <ProjectsGrid />;
 }

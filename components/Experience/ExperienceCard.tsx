@@ -1,39 +1,76 @@
-import { BriefcaseBusiness } from "lucide-react";
+"use client";
+
 import type { ExperienceItem } from "@/data/experience";
+import { Reveal } from "@/components/Shared/Reveal";
+import { StarMark } from "@/components/Shared/StarMark";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
 
 export default function ExperienceCard({
   resumeData,
 }: {
   resumeData: ExperienceItem[];
 }) {
+  const { t } = usePreferences();
+
   return (
-    <>
-      <div className="flex items-center justify-center p-3 m-4 ltr:justify-end w-fit justify-items-center">
-        <ol className="relative border-r-2 border-gray-300 dark:border-gray-700">
-          {resumeData.map((value) => (
-            <li key={value.Id} className="mb-10 mr-6">
-              <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -right-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                <BriefcaseBusiness color="#6936f5" height={24} width={24} />
-              </span>
-              <h3
-                className="flex items-center mb-1 font-[Almarai]
-                text-lg font-semibold text-gray-900 dark:text-white "
+    <section id="experience" className="py-16">
+      <Reveal className="mb-11">
+        <div
+          className="mb-2.5 inline-flex items-center gap-[9px] text-[0.82rem] font-extrabold tracking-[.06em]"
+          style={{ color: "var(--primary)" }}
+        >
+          <StarMark size={13} />
+          {t.sections.expKicker}
+        </div>
+        <h2 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
+          {t.sections.expTitle}
+        </h2>
+        {/* <p className="m-0 mt-2.5 max-w-[54ch] text-[1.02rem]" style={{ color: "var(--muted)" }}>
+          {t.sections.expSub}
+        </p> */}
+      </Reveal>
+
+      {/* Timeline — the spine sits on the inline-start edge, so it mirrors
+          automatically: right side in RTL, left side in LTR. */}
+      <ol
+        className="relative m-0 list-none p-0"
+        style={{ borderInlineStart: "2px solid var(--border)" }}
+      >
+        {resumeData.map((job, i) => (
+          <Reveal as="li" key={job.Id} delay={Math.min(i, 6) * 0.05}>
+            <div className="relative mb-[34px] ps-[38px]">
+              <span
+                className="absolute top-[5px] h-4 w-4 rounded-full"
+                style={{
+                  insetInlineStart: -9,
+                  background: "var(--primary)",
+                  boxShadow: "0 0 0 5px var(--bg), 0 0 0 6px var(--border)",
+                }}
+              />
+              <span
+                dir="ltr"
+                className="mb-[9px] inline-block rounded-full px-3 py-1 text-[0.8rem] font-extrabold"
+                style={{
+                  color: "var(--primary)",
+                  background: "var(--primary-soft)",
+                }}
               >
-                {value.position}
-                <span className="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3">
-                  {value.Start} - {value.EndJob}
-                </span>
+                {job.Start} — {job.EndJob}
+              </span>
+              <h3 className="m-0 mb-[5px] font-[Cairo] text-[1.18rem] font-extrabold">
+                {job.position}
               </h3>
               <p
-                className="mb-4 mt-2 text-base md:text-xl whitespace-pre-wrap font-[Cairo] 
-              font-normal text-gray-500 dark:text-gray-400"
+                className="m-0 max-w-[60ch] text-[0.98rem] leading-[1.75]"
+                style={{ color: "var(--muted)" }}
               >
-                {value.Place && value.Place + " - "} {value.Description}
+                {job.Place && `${job.Place} — `}
+                {job.Description}
               </p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </>
+            </div>
+          </Reveal>
+        ))}
+      </ol>
+    </section>
   );
 }

@@ -1,22 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, RefreshCw, Star, GitFork } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { toast } from "sonner";
-import { BorderBeam } from "../magicui/border-beam";
+import { Star, GitFork, ExternalLink } from "lucide-react";
+import { StarMark } from "@/components/Shared/StarMark";
+import { Reveal } from "@/components/Shared/Reveal";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
 
 interface GitHubRepo {
   id: number;
@@ -28,177 +17,119 @@ interface GitHubRepo {
   html_url: string;
 }
 
-export default function GitHubProjectList() {
+const LANG_COLORS: Record<string, string> = {
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  Python: "#3572A5",
+  "C#": "#178600",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  "Jupyter Notebook": "#DA5B0B",
+  Vue: "#41b883",
+  Shell: "#89e051",
+};
 
+export default function GitHubProjectList() {
+  const { t } = usePreferences();
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [starredRepos, setStarredRepos] = useState<Set<number>>(new Set());
-
-  const handleStar = (repoId: number, repoName: string) => {
-    setStarredRepos((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(repoId)) {
-        newSet.delete(repoId);
-        toast.info(`Repository Unstarred`, {
-          description: `You've unstarred ${repoName}`,
-        });
-      } else {
-        newSet.add(repoId);
-        toast.success("Repository Starred", {
-          description: `You've starred ${repoName}`,
-        });
-      }
-      return newSet;
-    });
-  };
 
   useEffect(() => {
     let cancelled = false;
-
-    const fetchRepos = async () => {
+    (async () => {
       try {
-        const response = await fetch(
-          "https://api.github.com/users/mhuwaimel/repos"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch repositories");
-        }
-        const data = (await response.json()) as GitHubRepo[];
-        if (!cancelled) {
-          setRepos(data);
-          setError(null);
-        }
+        const res = await fetch("https://api.github.com/users/mhuwaimel/repos?sort=updated&per_page=12");
+        if (!res.ok) throw new Error("fetch failed");
+        const data = (await res.json()) as GitHubRepo[];
+        if (!cancelled) setRepos(data);
       } catch {
-        if (!cancelled) {
-          setError(
-            "An error occurred while fetching repositories. Please try again later."
-          );
-        }
+        if (!cancelled) setError(t.repos.error);
       } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
+        if (!cancelled) setLoading(false);
       }
-    };
-
-    void fetchRepos();
-
+    })();
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="py-4 mt-2 sm:py-6 sm:mt-8">
-      <div className="text-center">
-        <h2 className="font-general-medium font-[Mada] text-2xl sm:text-4xl mb-1 text-ternary-dark dark:text-ternary-light">
-          آخر المشاريع
+    <section id="github" className="py-16">
+      <Reveal className="mb-10">
+        <div
+          className="mb-2.5 inline-flex items-center gap-[9px] text-[0.82rem] font-extrabold tracking-[.06em]"
+          style={{ color: "var(--primary)" }}
+        >
+          <StarMark size={13} />
+          {t.sections.ghKicker}
+        </div>
+        <h2 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
+          {t.sections.ghTitle}
         </h2>
-      </div>
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.1,
-            },
-          },
-        }}
-      >
-        {loading && (
-          <p className="col-span-full text-center text-sm text-gray-500">
-            Loading repositories...
-          </p>
-        )}
-        <AnimatePresence>
-          {error && (
-            <p className="col-span-full text-center text-sm text-red-500">
-              {error}
-            </p>
-          )}
-         
-          {repos.map((repo) => (
-            <motion.div
-              key={repo.id}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <Card
-                className="h-full flex flex-col bg-white  
-              shadow-lg cursor-pointer animate_top rounded-xl hover:shadow-xl
-              relative overflow-hidden
-              "
+        <p className="m-0 mt-2.5 max-w-[54ch] text-[1.02rem]" style={{ color: "var(--muted)" }}>
+          {t.sections.ghSub}
+        </p>
+      </Reveal>
+
+      {loading && (
+        <p className="py-8 text-center text-sm" style={{ color: "var(--muted)" }}>
+          {t.repos.loading}
+        </p>
+      )}
+      {error && (
+        <p className="py-8 text-center text-sm" style={{ color: "#ef4444" }}>
+          {error}
+        </p>
+      )}
+
+      <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 lg:grid-cols-3">
+        {repos.map((repo, i) => (
+          <Link
+            key={repo.id}
+            href={repo.html_url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={t.viewOnGithub}
+            className="reveal group flex flex-col gap-[13px] rounded-2xl p-[22px] no-underline transition-all duration-300 hover:-translate-y-[5px]"
+            data-visible="true"
+            style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--fg)", transitionDelay: `${Math.min(i, 6) * 0.05}s` }}
+          >
+            <div className="flex items-center gap-2.5">
+              <StarMark size={18} gradient />
+              <span
+                dir="ltr"
+                className="break-all font-[Cairo] text-[1rem] font-extrabold [unicode-bidi:isolate]"
+                style={{ color: "var(--primary)" }}
               >
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-[#3a37ab]">
-                    {repo.name}
-                  </CardTitle>
-                  <CardDescription className="text-gray-700">
-                    {repo.description || "No description available"}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow flex flex-col justify-between">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {repo.language && (
-                      <Badge
-                        variant="secondary"
-                        className="bg-[#6936f5] hover:bg-[#aba9ff] text-white"
-                      >
-                        {repo.language}
-                      </Badge>
-                    )}
-                    <Badge
-                      variant="outline"
-                      className={`flex items-center ${
-                        starredRepos.has(repo.id)
-                          ? "text-green-700"
-                          : "text-gray-900"
-                      }`}
-                      onClick={() => handleStar(repo.id, repo.name)}
-                    >
-                      <Star className="mr-1 h-3 w-3" /> {repo.stargazers_count}
-                    </Badge>
-                    <Badge variant="outline" className="flex items-center">
-                      <GitFork className="mr-1 h-3 w-3" /> {repo.forks_count}
-                    </Badge>
-                  </div>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full mt-auto font-[cairo]"
-                  >
-                    <Link
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="استعراض المشروع"
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" /> استعراض على
-                      GitHub
-                    </Link>
-                  </Button>
-                </CardContent>
-                <BorderBeam
-        duration={6}
-        delay={3}
-        size={400}
-     
-        
-      />
-              </Card>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-    </div>
+                {repo.name}
+              </span>
+            </div>
+            <p className="m-0 flex-1 text-[0.9rem] leading-[1.7]" style={{ color: "var(--muted)" }}>
+              {repo.description || "—"}
+            </p>
+            <div className="flex items-center gap-[18px] text-[0.83rem] font-semibold" style={{ color: "var(--muted)" }}>
+              {repo.language && (
+                <span className="inline-flex items-center gap-[7px]">
+                  <span
+                    className="h-[11px] w-[11px] rounded-full"
+                    style={{ background: LANG_COLORS[repo.language] ?? "var(--muted)" }}
+                  />
+                  {repo.language}
+                </span>
+              )}
+              <span dir="ltr" className="inline-flex items-center gap-1.5">
+                <Star size={13} /> {repo.stargazers_count}
+              </span>
+              <span dir="ltr" className="inline-flex items-center gap-1.5">
+                <GitFork size={13} /> {repo.forks_count}
+              </span>
+              <ExternalLink size={14} className="ms-auto opacity-0 transition-opacity group-hover:opacity-100" />
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }
