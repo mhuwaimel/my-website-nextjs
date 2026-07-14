@@ -110,7 +110,7 @@ export default function Hero() {
             {[
               { n: "+17", l: t.stats.years },
               { n: "11", l: t.stats.roles },
-              { n: "8", l: t.stats.projects },
+              { n: "10", l: t.stats.projects },
             ].map((s, i) => (
               <div key={i} className="flex items-center gap-[30px]">
                 {i > 0 && (
