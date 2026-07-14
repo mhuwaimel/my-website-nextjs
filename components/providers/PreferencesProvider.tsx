@@ -45,8 +45,12 @@ export function PreferencesProvider({
   useEffect(() => {
     const savedDir = localStorage.getItem(DIR_KEY) as Dir | null;
     const savedTheme = localStorage.getItem(THEME_KEY) as Theme | null;
-    if (savedDir === "rtl" || savedDir === "ltr") setDirState(savedDir);
-    if (savedTheme === "light" || savedTheme === "dark") setThemeState(savedTheme);
+    const frame = requestAnimationFrame(() => {
+      if (savedDir === "rtl" || savedDir === "ltr") setDirState(savedDir);
+      if (savedTheme === "light" || savedTheme === "dark") setThemeState(savedTheme);
+    });
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   // Reflect direction onto <html> + persist.

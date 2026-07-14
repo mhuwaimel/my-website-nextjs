@@ -87,9 +87,9 @@ export default function ContactForm() {
               <StarMark size={13} />
               {t.sections.contactKicker}
             </div>
-            <h2 className="m-0 mb-[26px] font-[Cairo] text-[clamp(1.7rem,4vw,2.5rem)] font-black">
+            <h1 className="m-0 mb-[26px] font-[Cairo] text-[clamp(1.7rem,4vw,2.5rem)] font-black">
               {t.sections.contactTitle}
-            </h2>
+            </h1>
 
             <form ref={form} onSubmit={handleSubmit}>
               <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -102,6 +102,9 @@ export default function ContactForm() {
                   </span>
                   <input
                     className="field"
+                    name="name"
+                    autoComplete="name"
+                    required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t.form.phName}
@@ -118,6 +121,9 @@ export default function ContactForm() {
                   <input
                     type="email"
                     className="field"
+                    name="email"
+                    autoComplete="email"
+                    required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.form.phEmail}
@@ -134,6 +140,8 @@ export default function ContactForm() {
                 </span>
                 <input
                   className="field"
+                  name="subject"
+                  required
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder={t.form.phSubject}
@@ -149,6 +157,8 @@ export default function ContactForm() {
                 </span>
                 <textarea
                   className="field min-h-[120px] resize-y"
+                  name="message"
+                  required
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder={t.form.phMessage}

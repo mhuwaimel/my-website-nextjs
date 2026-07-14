@@ -1,5 +1,7 @@
 import GitHubProjectList from "@/components/GitHub/ProjectList";
 
+export const revalidate = 86_400;
+
 export const metadata = {
   title: "مشاريع GitHub",
   description:
@@ -19,6 +21,21 @@ export const metadata = {
   },
 };
 
-export default function GitHubPage() {
-  return <GitHubProjectList />;
+export default async function GitHubPage() {
+  let repositories = [];
+
+  try {
+    const response = await fetch(
+      "https://api.github.com/users/mhuwaimel/repos?sort=updated&per_page=12",
+      { next: { revalidate } },
+    );
+
+    if (response.ok) {
+      repositories = await response.json();
+    }
+  } catch {
+    // The component renders a stable fallback when GitHub is unavailable.
+  }
+
+  return <GitHubProjectList repositories={repositories} />;
 }

@@ -34,7 +34,7 @@ export default function Navbar() {
           <span className="relative grid h-[34px] w-[34px] place-items-center">
             <Image
               src="/assets/logo32.png"
-              alt="logo"
+              alt={t.aria.logo}
               priority
               width={32}
               height={32}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import ProjectGallery from "@/components/Projects/project-gallery";
+import { siteConfig } from "@/config/seo";
 import projectsData from "@/data/projects";
 
 interface ProjectDetailsProps {
@@ -19,7 +20,7 @@ export const generateMetadata = async ({
   }
 
   const title = project.Title.trim();
-  const description = project.Description_All.trim();
+  const description = project.metaDescription.trim();
   const path = `/projects/${id}`;
 
   return {
@@ -53,5 +54,30 @@ export default async function ProjectDetails({ params }: ProjectDetailsProps) {
     notFound();
   }
 
-  return <ProjectGallery projectId={id} />;
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.Title.trim(),
+    description: project.Description_All.trim(),
+    url: `${siteConfig.url}/projects/${id}`,
+    image: `${siteConfig.url}/api/og?projectId=${id}`,
+    keywords: project.keyWords.join(", "),
+    author: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(projectJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <ProjectGallery projectId={id} />
+    </>
+  );
 }

@@ -78,7 +78,7 @@ export default function Hero() {
             }}
           >
             <a
-              href="#"
+              href="/Resume/Cv-english.pdf"
               className="inline-flex items-center  gap-[9px] rounded-[13px] px-[26px] py-3.5 font-extrabold transition-transform hover:translate-y-[-3px]"
               style={{
                 background: "var(--primary)",
@@ -165,6 +165,7 @@ export default function Hero() {
                   alt={t.hero.portraitAlt}
                   src="/assets/hero.jpg"
                   fill
+                  priority
                   className="object-cover transition-all duration-500 hover:scale-125"
                 />
               </div>

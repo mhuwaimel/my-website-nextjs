@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Star, GitFork, ExternalLink } from "lucide-react";
 import { StarMark } from "@/components/Shared/StarMark";
 import { Reveal } from "@/components/Shared/Reveal";
 import { usePreferences } from "@/components/providers/PreferencesProvider";
 
-interface GitHubRepo {
+export interface GitHubRepo {
   id: number;
   name: string;
   description: string | null;
@@ -29,31 +28,12 @@ const LANG_COLORS: Record<string, string> = {
   Shell: "#89e051",
 };
 
-export default function GitHubProjectList() {
+export default function GitHubProjectList({
+  repositories,
+}: {
+  repositories: GitHubRepo[];
+}) {
   const { t } = usePreferences();
-  const [repos, setRepos] = useState<GitHubRepo[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("https://api.github.com/users/mhuwaimel/repos?sort=updated&per_page=12");
-        if (!res.ok) throw new Error("fetch failed");
-        const data = (await res.json()) as GitHubRepo[];
-        if (!cancelled) setRepos(data);
-      } catch {
-        if (!cancelled) setError(t.repos.error);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <section id="github" className="py-16">
@@ -65,27 +45,22 @@ export default function GitHubProjectList() {
           <StarMark size={13} />
           {t.sections.ghKicker}
         </div>
-        <h2 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
+        <h1 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
           {t.sections.ghTitle}
-        </h2>
+        </h1>
         <p className="m-0 mt-2.5 max-w-[54ch] text-[1.02rem]" style={{ color: "var(--muted)" }}>
           {t.sections.ghSub}
         </p>
       </Reveal>
 
-      {loading && (
-        <p className="py-8 text-center text-sm" style={{ color: "var(--muted)" }}>
-          {t.repos.loading}
-        </p>
-      )}
-      {error && (
+      {repositories.length === 0 && (
         <p className="py-8 text-center text-sm" style={{ color: "#ef4444" }}>
-          {error}
+          {t.repos.error}
         </p>
       )}
 
       <div className="grid grid-cols-1 gap-[22px] sm:grid-cols-2 lg:grid-cols-3">
-        {repos.map((repo, i) => (
+        {repositories.map((repo, i) => (
           <Link
             key={repo.id}
             href={repo.html_url}

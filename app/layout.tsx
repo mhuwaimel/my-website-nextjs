@@ -11,20 +11,13 @@ import ScrollToTop from "@/components/Shared/ScrollToTop";
 
 import { siteConfig } from "@/config/seo";
 import {
-  almarai,
-  cairo,
-  changa,
-  lateef,
-  mada,
-  rakkas,
   tajawal,
-  vibes,
 } from "@/config/fonts";
 
 export const metadata = {
   applicationName: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
-  robots: { index: true, googleBot: { index: true } },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   authors: [{ name: siteConfig.name, url: "https://github.com/mhuwaimel" }],
   title: {
     default: siteConfig.longTitle,
@@ -96,7 +89,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body
-        className={`${cairo.className} ${lateef.className} ${mada.className} ${rakkas.className} ${vibes.className} ${changa.className} ${almarai.className} ${tajawal.className} antialiased`}
+        className={`${tajawal.className} antialiased`}
         style={{ fontFamily: "Tajawal, Cairo, system-ui, sans-serif" }}
         suppressHydrationWarning
       >

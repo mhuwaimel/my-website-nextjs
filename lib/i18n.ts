@@ -42,7 +42,7 @@ export const dict = {
     },
     contactInfo: { email: "البريد الإلكتروني", phone: "الهاتف", location: "الموقع", locationValue: "الرياض، المملكة العربية السعودية" },
     repos: { loading: "جارٍ تحميل المستودعات…", error: "تعذّر تحميل المستودعات، حاول لاحقاً." },
-    project: { technologies: "التقنيات", galleryImage: "صورة من المشروع", notFound: "المشروع غير موجود", projectLink: "رابط المشروع" },
+    project: { overview: "نبذة عن المشروع", technologies: "التقنيات", galleryImage: "صورة من المشروع", notFound: "المشروع غير موجود", projectLink: "رابط المشروع" },
     preferences: { direction: "اللغة", theme: "المظهر", arabic: "العربية", english: "الإنجليزية", light: "فاتح", dark: "داكن" },
     aria: {
       switchToEnglish: "تغيير اللغة إلى الإنجليزية", switchToArabic: "تغيير اللغة إلى العربية",
@@ -92,7 +92,7 @@ export const dict = {
     },
     contactInfo: { email: "Email", phone: "Phone", location: "Location", locationValue: "Riyadh, Saudi Arabia" },
     repos: { loading: "Loading repositories…", error: "Unable to load repositories. Please try again later." },
-    project: { technologies: "Technologies", galleryImage: "Project image", notFound: "Project not found", projectLink: "Project link" },
+    project: { overview: "Project overview", technologies: "Technologies", galleryImage: "Project image", notFound: "Project not found", projectLink: "Project link" },
     preferences: { direction: "Language", theme: "Theme", arabic: "Arabic", english: "English", light: "Light", dark: "Dark" },
     aria: {
       switchToEnglish: "Switch language to English", switchToArabic: "Switch language to Arabic",

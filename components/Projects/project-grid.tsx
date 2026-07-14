@@ -20,9 +20,9 @@ export default function ProjectsGrid() {
           <StarMark size={13} />
           {t.sections.workKicker}
         </div>
-        <h2 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
+        <h1 className="m-0 font-[Cairo] text-[clamp(1.7rem,4vw,2.6rem)] font-black">
           {t.sections.workTitle}
-        </h2>
+        </h1>
         <p className="m-0 mt-2.5 max-w-[54ch] text-[1.02rem]" style={{ color: "var(--muted)" }}>
           {t.sections.workSub}
         </p>

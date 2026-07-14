@@ -8,6 +8,8 @@ export default function Home() {
     name: "محمد عبدالعزيز الهويمل",
     alternateName: "Mohammed AlHuwimmel",
     url: siteConfig.url,
+    image: `${siteConfig.url}/assets/hero.jpg`,
+    description: siteConfig.description,
     jobTitle: "مبرمج ومشرف تربوي",
     sameAs: [
       "https://github.com/mhuwaimel",

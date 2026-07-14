@@ -28,6 +28,7 @@ export default function GalleryCarousel({ projectId }: { projectId: string }) {
                       height="1080"
                       className="object-cover w-full h-full aspect-video"
                       alt={`${t.project.galleryImage} ${idxx + 1}`}
+                      priority={idxx === 0}
                     />
                   </CarouselItem>
                 ))}

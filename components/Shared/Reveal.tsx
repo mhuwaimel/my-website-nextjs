@@ -1,8 +1,8 @@
 "use client";
 
-import { createElement, useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
-type RevealTag = keyof HTMLElementTagNameMap;
+type RevealTag = "div" | "li";
 
 /**
  * Scroll-reveal helper. Adds `data-visible="true"` once the element scrolls
@@ -21,10 +21,11 @@ export function Reveal({
   delay?: number;
   as?: RevealTag;
 }) {
-  const ref = useRef<HTMLElement | null>(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLLIElement | null>(null);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = Tag === "li" ? listRef.current : divRef.current;
     if (!el || typeof IntersectionObserver === "undefined") {
       el?.setAttribute("data-visible", "true");
       return;
@@ -42,15 +43,16 @@ export function Reveal({
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [Tag]);
 
-  return createElement(
-    Tag,
-    {
-      ref,
-      className: `reveal ${className}`,
-      style: { transitionDelay: `${delay}s` },
-    },
-    children,
+  const props = {
+    className: `reveal ${className}`,
+    style: { transitionDelay: `${delay}s` },
+  };
+
+  return Tag === "li" ? (
+    <li ref={listRef} {...props}>{children}</li>
+  ) : (
+    <div ref={divRef} {...props}>{children}</div>
   );
 }

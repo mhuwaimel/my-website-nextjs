@@ -1,0 +1,13 @@
+# Mohammed AlHuwimmel
+> Arabic-first professional portfolio for Mohammed AlHuwimmel, a web developer and educational supervisor in Saudi Arabia.
+
+## Primary pages
+- [About](https://mohammedh.sa/): Professional profile, expertise, and contact details.
+- [Professional experience](https://mohammedh.sa/experience): Career timeline in software and educational leadership.
+- [Projects](https://mohammedh.sa/projects): Education-technology systems and software case studies.
+- [GitHub projects](https://mohammedh.sa/github): Curated open-source repositories and software work.
+
+## Entity details
+- Name: Mohammed Abdulaziz AlHuwimmel (محمد عبدالعزيز الهويمل)
+- Location: Riyadh, Saudi Arabia
+- Profiles: https://github.com/mhuwaimel and https://www.linkedin.com/in/mhuwimmel/

@@ -18,25 +18,28 @@ const ProjectGallery = ({ projectId }: { projectId: string }) => {
       <div className="container mx-auto">
         {/* Header */}
         <div>
-          <p
+          <h1
             className="md:text-3xl font-bold text-right font-[Cairo] text-xl 
          text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7"
           >
             {project.Title}
-          </p>
+          </h1>
         </div>
         <div className="mt-8 ">
           <div className="w-full ">
             {/* Single project client details */}
             <div className="mb-7">
-              <p className="mb-2 md:text-2xl text-xl  font-[tajawal] tracking-tighter text-secondary-dark dark:text-secondary-light">
+              <h2 className="mb-2 text-xl font-semibold font-general-regular text-ternary-dark dark:text-ternary-light">
+                {t.project.overview}
+              </h2>
+              <p className="md:text-2xl text-xl font-[tajawal] tracking-tighter text-secondary-dark dark:text-secondary-light">
                 {project.Description_All}
               </p>
             </div>
             <div className="mb-7">
-              <p className="mb-2 text-xl font-semibold font-general-regular text-ternary-dark dark:text-ternary-light">
+              <h2 className="mb-2 text-xl font-semibold font-general-regular text-ternary-dark dark:text-secondary-light">
                 {t.project.technologies}
-              </p>
+              </h2>
               <div className="flex text-xl font-general-regular ">
                 <div className="mb-7">
                   <ProjectTechStack project={project} />
