@@ -5,9 +5,10 @@ import ProjectItem from "./ProjectItem";
 import { Reveal } from "@/components/Shared/Reveal";
 import { StarMark } from "@/components/Shared/StarMark";
 import { usePreferences } from "@/components/providers/PreferencesProvider";
+import { getLocalizedProject } from "@/lib/localized-content";
 
 export default function ProjectsGrid() {
-  const { t } = usePreferences();
+  const { dir, t } = usePreferences();
 
   return (
     <section id="work" className="py-16">
@@ -29,7 +30,7 @@ export default function ProjectsGrid() {
 
       <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
         {projectsData.map((project, index) => (
-          <ProjectItem key={project.id ?? index} {...project} />
+          <ProjectItem key={project.id ?? index} {...getLocalizedProject(project, dir)} />
         ))}
       </div>
     </section>

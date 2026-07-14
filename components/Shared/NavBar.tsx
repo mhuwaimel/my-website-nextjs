@@ -45,7 +45,7 @@ export default function Navbar() {
             style={{ fontFamily: "vibes", fontSize: "1.5rem" }}
             className=" text-[1.12rem] font-extrabold tracking-[.01em]"
           >
-            محمد الهويمل
+            {t.hero.name}
           </span>
         </Link>
 
@@ -58,10 +58,10 @@ export default function Navbar() {
             type="button"
             aria-label={
               dir === "rtl"
-                ? "Switch language to English"
-                : "تغيير اللغة إلى العربية"
+                ? t.aria.switchToEnglish
+                : t.aria.switchToArabic
             }
-            title={dir === "rtl" ? "English" : "العربية"}
+            title={dir === "rtl" ? t.aria.switchToEnglish : t.aria.switchToArabic}
             onClick={toggleDir}
             className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-(--surface2)"
             style={{
@@ -78,9 +78,9 @@ export default function Navbar() {
           <button
             type="button"
             aria-label={
-              isDark ? "Switch to light theme" : "Switch to dark theme"
+              isDark ? t.aria.switchToLight : t.aria.switchToDark
             }
-            title={isDark ? "Light theme" : "Dark theme"}
+            title={isDark ? t.aria.switchToLight : t.aria.switchToDark}
             onClick={toggleTheme}
             className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-(--surface2)"
             style={{
@@ -112,7 +112,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            aria-label="menu"
+            aria-label={t.aria.menu}
             onClick={() => setMobileMenu((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-full transition-colors md:hidden"
             style={{ color: "var(--fg)" }}

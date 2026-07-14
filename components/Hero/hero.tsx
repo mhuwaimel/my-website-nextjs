@@ -3,11 +3,7 @@
 import Link from "next/link";
 import { StarMark } from "@/components/Shared/StarMark";
 import { usePreferences } from "@/components/providers/PreferencesProvider";
-import Image from "next/image";
 import CustomImage from "../CustomImage";
-
-const BIO =
-  "بدأت رحلتي المهنية بست سنوات مبرمجاً في شركات وطنية كبرى، ثم انتقلت إلى التربية والتعليم معلّماً للحاسب الآلي، ومنذ سنوات أمارس دوراً قيادياً وإشرافياً في الميدان التعليمي، أوازن فيه بين الخبرة التقنية وقيادة الفرق وتحقيق الأهداف التربوية.";
 
 export default function Hero() {
   const { t } = usePreferences();
@@ -50,7 +46,7 @@ export default function Hero() {
               animationDelay: ".08s",
             }}
           >
-            محمد بن عبدالعزيز <span style={{ color: "var(--primary)" }}>الهويمل</span>
+            {t.hero.name}
           </h1>
 
           <p
@@ -71,7 +67,7 @@ export default function Hero() {
               animationDelay: ".24s",
             }}
           >
-            {BIO}
+            {t.hero.bio}
           </p>
 
           <div
@@ -82,8 +78,8 @@ export default function Hero() {
             }}
           >
             <a
-              href="/Resume/Cv-english.pdf"
-              className="inline-flex items-center gap-[9px] rounded-[13px] px-[26px] py-3.5 font-extrabold transition-transform hover:translate-y-[-3px]"
+              href="#"
+              className="inline-flex items-center  gap-[9px] rounded-[13px] px-[26px] py-3.5 font-extrabold transition-transform hover:translate-y-[-3px]"
               style={{
                 background: "var(--primary)",
                 color: "var(--on-primary)",
@@ -166,7 +162,7 @@ export default function Hero() {
                 style={{ color: "var(--muted)" }}
               >
                 <CustomImage
-                  alt="صورة محمد عبدالعزيز الهويمل"
+                  alt={t.hero.portraitAlt}
                   src="/assets/hero.jpg"
                   fill
                   className="object-cover transition-all duration-500 hover:scale-125"

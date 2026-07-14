@@ -4,13 +4,14 @@ import type { ExperienceItem } from "@/data/experience";
 import { Reveal } from "@/components/Shared/Reveal";
 import { StarMark } from "@/components/Shared/StarMark";
 import { usePreferences } from "@/components/providers/PreferencesProvider";
+import { getLocalizedExperience } from "@/lib/localized-content";
 
 export default function ExperienceCard({
   resumeData,
 }: {
   resumeData: ExperienceItem[];
 }) {
-  const { t } = usePreferences();
+  const { dir, t } = usePreferences();
 
   return (
     <section id="experience" className="py-16">
@@ -36,7 +37,9 @@ export default function ExperienceCard({
         className="relative m-0 list-none p-0"
         style={{ borderInlineStart: "2px solid var(--border)" }}
       >
-        {resumeData.map((job, i) => (
+        {resumeData.map((item, i) => {
+          const job = getLocalizedExperience(item, dir);
+          return (
           <Reveal as="li" key={job.Id} delay={Math.min(i, 6) * 0.05}>
             <div className="relative mb-[34px] ps-[38px]">
               <span
@@ -69,7 +72,8 @@ export default function ExperienceCard({
               </p>
             </div>
           </Reveal>
-        ))}
+          );
+        })}
       </ol>
     </section>
   );

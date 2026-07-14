@@ -5,7 +5,7 @@ import portofolio from "@/public/Images/projects/reactportofolio.png";
 import Trainingsystem from "@/public/Images/projects/SystemDashBoard.jpg";
 import SlSystem from "@/public/Images/projects/Ls.jpg";
 import myWebSite from "@/public/Images/projects/image.png";
-import sanadHomePage from "@/public/images/projects/sanad-homepage.png"
+import sanadHomePage from "@/public/Images/projects/sanad-homepage.png";
 import omrMain from "@/public/Images/projects/omr1.jpg";
 import type { StaticImageData } from "next/image";
 import { v4 as uuidv4 } from "uuid";

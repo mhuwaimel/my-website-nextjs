@@ -8,8 +8,10 @@ import {
 } from "@/components/ui/carousel";
 import CustomImage from "../CustomImage";
 import projectsData from "@/data/projects";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
 
 export default function GalleryCarousel({ projectId }: { projectId: string }) {
+  const { t } = usePreferences();
   return (
     <div dir="ltr" className="mt-12 mb-10 sm:mb-0">
       {projectsData
@@ -25,7 +27,7 @@ export default function GalleryCarousel({ projectId }: { projectId: string }) {
                       width="1920"
                       height="1080"
                       className="object-cover w-full h-full aspect-video"
-                      alt={"project " + " " + idxx}
+                      alt={`${t.project.galleryImage} ${idxx + 1}`}
                     />
                   </CarouselItem>
                 ))}

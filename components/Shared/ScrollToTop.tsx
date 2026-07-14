@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { motion, type TargetAndTransition } from "framer-motion";
 import { ChevronUpCircleIcon } from "lucide-react";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
 
 function ScrollToTop() {
+  const { t } = usePreferences();
   const [isVisible, setIsVisible] = useState(false);
 
   const isBrowser = () => typeof window !== "undefined"; //The approach recommended by Next.js
@@ -52,8 +54,8 @@ function ScrollToTop() {
           whileHover={jumpAnimation}
           className={`... scrollToTopButton  ${isVisible ? "visible" : ""}`}
           onClick={scrollToTop}
-          aria-label="Back to top"
-          title="Back to top أعلى الصفحة"
+          aria-label={t.aria.backToTop}
+          title={t.aria.backToTop}
         >
           <ChevronUpCircleIcon
             size={40}

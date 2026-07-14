@@ -11,6 +11,14 @@ type ContactErrors = Partial<
   Record<"name" | "email" | "subject" | "message", boolean>
 >;
 
+function FieldError({ show, message }: { show?: boolean; message: string }) {
+  return show ? (
+    <p className="mt-1 text-sm" style={{ color: "#ef4444" }}>
+      {message}
+    </p>
+  ) : null;
+}
+
 export default function ContactForm() {
   const { t } = usePreferences();
   const form = useRef<HTMLFormElement | null>(null);
@@ -45,7 +53,7 @@ export default function ContactForm() {
       });
       const { error } = (await res.json()) as { error?: string };
       if (error) throw new Error(error);
-      toast.success("تــم", { description: "شكراً لتواصلك، تم إرسال الرسالة" });
+      toast.success(t.form.successTitle, { description: t.form.successDescription });
       setSent(true);
       setName("");
       setEmail("");
@@ -53,20 +61,11 @@ export default function ContactForm() {
       setMessage("");
       setTimeout(() => setSent(false), 2600);
     } catch {
-      toast.error("عفواً", {
-        description: "حدث خطأ أثناء الإرسال، حاول لاحقاً",
-      });
+      toast.error(t.form.errorTitle, { description: t.form.errorDescription });
     } finally {
       setLoading(false);
     }
   };
-
-  const Err = ({ show }: { show?: boolean }) =>
-    show ? (
-      <p className="mt-1 text-sm" style={{ color: "#ef4444" }}>
-        {t.form.required}
-      </p>
-    ) : null;
 
   return (
     <section id="contact" className="py-16 pb-20">
@@ -107,7 +106,7 @@ export default function ContactForm() {
                     onChange={(e) => setName(e.target.value)}
                     placeholder={t.form.phName}
                   />
-                  <Err show={errors.name} />
+                  <FieldError show={errors.name} message={t.form.required} />
                 </label>
                 <label className="block">
                   <span
@@ -123,7 +122,7 @@ export default function ContactForm() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.form.phEmail}
                   />
-                  <Err show={errors.email} />
+                  <FieldError show={errors.email} message={t.form.required} />
                 </label>
               </div>
               <label className="mb-4 block">
@@ -139,7 +138,7 @@ export default function ContactForm() {
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder={t.form.phSubject}
                 />
-                <Err show={errors.subject} />
+                <FieldError show={errors.subject} message={t.form.required} />
               </label>
               <label className="mb-5 block">
                 <span
@@ -154,7 +153,7 @@ export default function ContactForm() {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder={t.form.phMessage}
                 />
-                <Err show={errors.message} />
+                <FieldError show={errors.message} message={t.form.required} />
               </label>
               <button
                 type="submit"
@@ -167,7 +166,7 @@ export default function ContactForm() {
                 }}
               >
                 {loading ? (
-                  <Loader2 className="animate-spin" size={18} />
+                  <><Loader2 className="animate-spin" size={18} /> {t.form.sending}</>
                 ) : sent ? (
                   t.form.sent
                 ) : (

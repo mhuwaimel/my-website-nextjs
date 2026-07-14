@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Github, Linkedin, Instagram } from "lucide-react";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
 
 const socials = [
   {
@@ -18,6 +19,7 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { t } = usePreferences();
   return (
     <footer
       style={{
@@ -27,25 +29,26 @@ export default function Footer() {
       className="footer-container"
     >
       <div className=" flex   items-center justify-between gap-5 px-6 py-2">
+        <small style={{ color: "var(--muted)" }}>{t.rights}</small>
         <p className="icons">
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/mhuwimmel/"
-            aria-label="My linkedin link"
+            aria-label="LinkedIn"
           >
             <Linkedin className="text-xl font-bold text-cyan-600 hover:text-2xl hover:text-cyan-950" />
           </Link>
           <Link
             target="_blank"
             href="https://github.com/mhuwaimel"
-            aria-label="My Github link"
+            aria-label="GitHub"
           >
             <Github className="text-2xl font-bold hover:text-3xl" />
           </Link>
           <Link
             target="_blank"
             href="http://instagram.com/mhuwaimel"
-            aria-label="My instagram link"
+            aria-label="Instagram"
           >
             <Instagram className="text-2xl text-amber-700 hover:text-rose-900 hover:text-3xl" />
           </Link>

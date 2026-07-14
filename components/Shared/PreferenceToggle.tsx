@@ -39,7 +39,7 @@ function Segment({
  * Always laid out LTR so the control itself doesn't flip when toggling.
  */
 export default function PreferenceToggle() {
-  const { dir, theme, setDir, setTheme } = usePreferences();
+  const { dir, theme, setDir, setTheme, t } = usePreferences();
 
   return (
     <div
@@ -62,20 +62,20 @@ export default function PreferenceToggle() {
     >
       <div style={{ display: "flex", alignItems: "center", gap: 10, justifyContent: "space-between" }}>
         <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: ".14em", color: "var(--muted)" }}>
-          DIRECTION
+          {t.preferences.direction}
         </span>
         <div style={{ display: "flex", background: "var(--surface2)", borderRadius: 999, padding: 3, gap: 2 }}>
-          <Segment active={dir === "rtl"} onClick={() => setDir("rtl")}>RTL ع</Segment>
-          <Segment active={dir === "ltr"} onClick={() => setDir("ltr")}>LTR A</Segment>
+          <Segment active={dir === "rtl"} onClick={() => setDir("rtl")}>{t.preferences.arabic}</Segment>
+          <Segment active={dir === "ltr"} onClick={() => setDir("ltr")}>{t.preferences.english}</Segment>
         </div>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 10, justifyContent: "space-between" }}>
         <span style={{ fontSize: 10, fontWeight: 800, letterSpacing: ".14em", color: "var(--muted)" }}>
-          THEME
+          {t.preferences.theme}
         </span>
         <div style={{ display: "flex", background: "var(--surface2)", borderRadius: 999, padding: 3, gap: 2 }}>
-          <Segment active={theme === "light"} onClick={() => setTheme("light")}>Light</Segment>
-          <Segment active={theme === "dark"} onClick={() => setTheme("dark")}>Dark</Segment>
+          <Segment active={theme === "light"} onClick={() => setTheme("light")}>{t.preferences.light}</Segment>
+          <Segment active={theme === "dark"} onClick={() => setTheme("dark")}>{t.preferences.dark}</Segment>
         </div>
       </div>
     </div>

@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import { Link2 } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { usePreferences } from "@/components/providers/PreferencesProvider";
 
 function ProjectTechStack({ project }: { project: Project }) {
+  const { t } = usePreferences();
   return (
     <ul className="flex gap-[6px]">
       {project.techStack.map((item, index) => {
@@ -21,7 +25,7 @@ function ProjectTechStack({ project }: { project: Project }) {
           target="_blank"
           className="mr-4 text-left"
           href={project.link}
-          title="Project Link"
+          title={t.project.projectLink}
         >
           <Link2 color="#000" className="text-3xl font-extrabold "></Link2>
         </Link>
