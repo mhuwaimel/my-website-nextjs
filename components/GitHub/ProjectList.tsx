@@ -92,7 +92,7 @@ export default function GitHubProjectList() {
             target="_blank"
             rel="noreferrer"
             aria-label={t.viewOnGithub}
-            className="reveal group flex flex-col gap-[13px] rounded-2xl p-[22px] no-underline transition-all duration-300 hover:-translate-y-[5px]"
+            className="reveal group flex flex-col gap-[13px] rounded-2xl p-[22px] no-underline transition-all duration-300 hover:translate-y-[-5px]"
             data-visible="true"
             style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--fg)", transitionDelay: `${Math.min(i, 6) * 0.05}s` }}
           >

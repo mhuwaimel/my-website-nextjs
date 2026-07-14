@@ -113,7 +113,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Navbar />
             </header>
 
-            <main className="flex-grow">
+            <main className="grow">
               <div className="mx-auto w-full max-w-[1180px] px-6">
                 {children}
               </div>

@@ -10,7 +10,7 @@ export default function HeroImage() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.25 }}
-      className="relative mx-auto mt-10 overflow-hidden rounded-full shadow-xl h-52 w-52 bg-gradient-to-b from-teal-500 md:h-96 md:w-96"
+      className="relative mx-auto mt-10 overflow-hidden rounded-full shadow-xl h-52 w-52 bg-linear-to-b from-teal-500 md:h-96 md:w-96"
     >
       <CustomImage
         alt="image"

@@ -56,14 +56,20 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            aria-label={dir === "rtl" ? "Switch language to English" : "تغيير اللغة إلى العربية"}
+            aria-label={
+              dir === "rtl"
+                ? "Switch language to English"
+                : "تغيير اللغة إلى العربية"
+            }
             title={dir === "rtl" ? "English" : "العربية"}
             onClick={toggleDir}
-            className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-[var(--surface2)]"
+            className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-(--surface2)"
             style={{
               color: "var(--fg)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+              cursor: "pointer",
             }}
           >
             <Languages size={19} aria-hidden="true" />
@@ -71,14 +77,18 @@ export default function Navbar() {
 
           <button
             type="button"
-            aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+            aria-label={
+              isDark ? "Switch to light theme" : "Switch to dark theme"
+            }
             title={isDark ? "Light theme" : "Dark theme"}
             onClick={toggleTheme}
-            className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-[var(--surface2)]"
+            className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-(--surface2)"
             style={{
               color: "var(--fg)",
               border: "1px solid var(--border)",
               background: "var(--surface)",
+              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+              cursor: "pointer",
             }}
           >
             {isDark ? (

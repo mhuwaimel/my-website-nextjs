@@ -1,310 +1,402 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-.scrollToTopButton {
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
 }
 
-.scrollToTopButton.visible {
-  opacity: 1;
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-.contact-icon {
-  font-size: 25px;
-  color: gray;
-  cursor: pointer;
-  position: relative;
-  transition: transform 0.4s ease;
-  border: none;
-  background-color: transparent;
-}
-
-.contact-icon:hover {
-  transform: scale(1.1, 1.1);
-}
-
-.footer-container {
-  color: #324d67;
-  font-family: "Almarai";
-  text-align: center;
-  margin-top: 20px;
-  padding: 30px 10px;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  justify-content: center;
-}
-
-.footer-container .icons {
-  display: flex;
-  gap: 10px;
-}
-
-:root {
-  --bg: #f6f4fb;
-  --surface: #ffffff;
-  --surface2: #f1eefa;
-  --fg: #191627;
-  --muted: #615f7a;
-  --border: #e7e3f2;
-  --primary: #6936f5;
-  --primary2: #8b5cf6;
-  --primary-soft: #ece5fe;
-  --on-primary: #ffffff;
-  --shadow: 0 16px 44px -16px rgba(70, 45, 150, 0.26);
-  --ring: rgba(105, 54, 245, 0.16);
-}
-
-/* Tailwind class strategy + explicit attribute, both supported. */
-.dark,
-[data-theme="dark"] {
-  --bg: #100e1a;
-  --surface: #1a1726;
-  --surface2: #221e35;
-  --fg: #f3f1fb;
-  --muted: #a7a3c2;
-  --border: #2c2840;
-  --primary: #9a7bff;
-  --primary2: #7c5cff;
-  --primary-soft: #241f3a;
-  --on-primary: #15101f;
-  --shadow: 0 22px 56px -18px rgba(0, 0, 0, 0.65);
-  --ring: rgba(154, 123, 255, 0.22);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--bg);
-  color: var(--fg);
-  transition:
-    background 0.45s ease,
-    color 0.45s ease;
-}
-
-::selection {
-  background: var(--primary);
-  color: var(--on-primary);
-}
-
-/* Eight-pointed star (used by <StarMark />). */
-.star8 {
-  clip-path: polygon(
-    50% 0%,
-    57.9% 30.9%,
-    85.4% 14.6%,
-    69.1% 42.1%,
-    100% 50%,
-    69.1% 57.9%,
-    85.4% 85.4%,
-    57.9% 69.1%,
-    50% 100%,
-    42.1% 69.1%,
-    14.6% 85.4%,
-    30.9% 57.9%,
-    0% 50%,
-    30.9% 42.1%,
-    14.6% 14.6%,
-    42.1% 30.9%
-  );
-}
-
-/* Scroll-reveal (used by <Reveal />). */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.reveal[data-visible="true"] {
-  opacity: 1;
-  transform: none;
-}
-
-/* Hero entrance + ambient motion. */
-@keyframes heroReveal {
-  from {
+  .scrollToTopButton {
+    cursor: pointer;
     opacity: 0;
-    transform: translateY(24px);
+    transition: opacity 0.3s ease-in-out;
   }
-  to {
+
+  .scrollToTopButton.visible {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .contact-icon {
+    font-size: 25px;
+    color: gray;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.4s ease;
+    border: none;
+    background-color: transparent;
+  }
+
+  .contact-icon:hover {
+    transform: scale(1.1, 1.1);
+  }
+
+  .footer-container {
+    color: #324d67;
+    font-family: 'Almarai';
+    text-align: center;
+    margin-top: 20px;
+    padding: 30px 10px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    justify-content: center;
+  }
+
+  .footer-container .icons {
+    display: flex;
+    gap: 10px;
+  }
+
+  :root {
+    --bg: #f6f4fb;
+    --surface: #ffffff;
+    --surface2: #f1eefa;
+    --fg: #191627;
+    --muted: #615f7a;
+    --border: #e7e3f2;
+    --primary: #6936f5;
+    --primary2: #8b5cf6;
+    --primary-soft: #ece5fe;
+    --on-primary: #ffffff;
+    --shadow: 0 16px 44px -16px rgba(70, 45, 150, 0.26);
+    --ring: rgba(105, 54, 245, 0.16);
+  }
+
+  /* Tailwind class strategy + explicit attribute, both supported. */
+  .dark,
+  [data-theme='dark'] {
+    --bg: #100e1a;
+    --surface: #1a1726;
+    --surface2: #221e35;
+    --fg: #f3f1fb;
+    --muted: #a7a3c2;
+    --border: #2c2840;
+    --primary: #9a7bff;
+    --primary2: #7c5cff;
+    --primary-soft: #241f3a;
+    --on-primary: #15101f;
+    --shadow: 0 22px 56px -18px rgba(0, 0, 0, 0.65);
+    --ring: rgba(154, 123, 255, 0.22);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    transition:
+      background 0.45s ease,
+      color 0.45s ease;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--on-primary);
+  }
+
+  /* Eight-pointed star (used by <StarMark />). */
+  .star8 {
+    clip-path: polygon(
+      50% 0%,
+      57.9% 30.9%,
+      85.4% 14.6%,
+      69.1% 42.1%,
+      100% 50%,
+      69.1% 57.9%,
+      85.4% 85.4%,
+      57.9% 69.1%,
+      50% 100%,
+      42.1% 69.1%,
+      14.6% 85.4%,
+      30.9% 57.9%,
+      0% 50%,
+      30.9% 42.1%,
+      14.6% 14.6%,
+      42.1% 30.9%
+    );
+  }
+
+  /* Scroll-reveal (used by <Reveal />). */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .reveal[data-visible='true'] {
     opacity: 1;
     transform: none;
   }
-}
-@keyframes spinSlow {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    transition: none;
+  /* Hero entrance + ambient motion. */
+  @keyframes heroReveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
-  *[style*="animation"] {
-    animation: none !important;
+  @keyframes spinSlow {
+    to {
+      transform: rotate(360deg);
+    }
   }
-}
+  @keyframes floaty {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
 
-/* Token-aware focus state for form fields. */
-.field {
-  width: 100%;
-  padding: 12px 15px;
-  border-radius: 11px;
-  border: 1.5px solid var(--border);
-  background: var(--bg);
-  color: var(--fg);
-  font-size: 0.95rem;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-}
-.field:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px var(--ring);
-}
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      transition: none;
+    }
+    *[style*='animation'] {
+      animation: none !important;
+    }
+  }
 
-/* backtoTop/ */
+  /* Token-aware focus state for form fields. */
+  .field {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 11px;
+    border: 1.5px solid var(--border);
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 0.95rem;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px var(--ring);
+  }
 
-/*-------------------------
+  /* backtoTop/ */
+
+  /*-------------------------
     Back To Top  
 ---------------------------*/
-@-webkit-keyframes border-transform {
-  0%,
-  100% {
-    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  @-webkit-keyframes border-transform {
+    0%,
+    100% {
+      border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+    }
+
+    14% {
+      border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+    }
+
+    28% {
+      border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+    }
+
+    42% {
+      border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+    }
+
+    56% {
+      border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+    }
+
+    70% {
+      border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+    }
+
+    84% {
+      border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+    }
   }
 
-  14% {
-    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  .rbt-progress-parent {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 2px var(--black-opacity);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
   }
 
-  28% {
-    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  .rbt-progress-parent.rbt-backto-top-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
-  42% {
-    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  .rbt-progress-parent::after {
+    position: absolute;
+    font-family: 'feather' !important;
+    content: '\e914';
+    text-align: center;
+    line-height: 46px;
+    font-size: 20px;
+    color: var(--color-primary);
+    left: 0;
+    top: 0;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    display: block;
+    z-index: 2;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
   }
 
-  56% {
-    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  .rbt-progress-parent:hover::after {
+    color: var(--color-primary);
   }
 
-  70% {
-    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+  .rbt-progress-parent::before {
+    position: absolute;
+    font-family: 'feather' !important;
+    content: '\e914';
+    text-align: center;
+    line-height: 46px;
+    font-size: 24px;
+    opacity: 0;
+    background: #0d0d12;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    left: 0;
+    top: 0;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    display: block;
+    z-index: 2;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+    color: var(--color-primary);
   }
 
-  84% {
-    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  .rbt-progress-parent svg path {
+    fill: none;
   }
-}
 
-.rbt-progress-parent {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  height: 46px;
-  width: 46px;
-  cursor: pointer;
-  display: block;
-  border-radius: 50px;
-  box-shadow: inset 0 0 0 2px var(--black-opacity);
-  z-index: 10000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(15px);
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-.rbt-progress-parent.rbt-backto-top-active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.rbt-progress-parent::after {
-  position: absolute;
-  font-family: "feather" !important;
-  content: "\e914";
-  text-align: center;
-  line-height: 46px;
-  font-size: 20px;
-  color: var(--color-primary);
-  left: 0;
-  top: 0;
-  height: 46px;
-  width: 46px;
-  cursor: pointer;
-  display: block;
-  z-index: 2;
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
-}
-
-.rbt-progress-parent:hover::after {
-  color: var(--color-primary);
-}
-
-.rbt-progress-parent::before {
-  position: absolute;
-  font-family: "feather" !important;
-  content: "\e914";
-  text-align: center;
-  line-height: 46px;
-  font-size: 24px;
-  opacity: 0;
-  background: #0d0d12;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  left: 0;
-  top: 0;
-  height: 46px;
-  width: 46px;
-  cursor: pointer;
-  display: block;
-  z-index: 2;
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
-  color: var(--color-primary);
-}
-
-.rbt-progress-parent svg path {
-  fill: none;
-}
-
-.rbt-progress-parent svg.rbt-back-circle path {
-  stroke: var(--color-primary);
-  stroke-width: 4;
-  box-sizing: border-box;
-  -webkit-transition: all 200ms linear;
-  transition: all 200ms linear;
-  opacity: 0.6;
+  .rbt-progress-parent svg.rbt-back-circle path {
+    stroke: var(--color-primary);
+    stroke-width: 4;
+    box-sizing: border-box;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+    opacity: 0.6;
+  }
 }
 
 @layer base {

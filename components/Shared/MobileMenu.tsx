@@ -14,7 +14,7 @@ export default function MobileMenu({
 
   return (
     <ul
-      className="absolute start-0 end-0 top-[64px] flex h-[calc(100vh-64px)] w-full flex-col gap-1 p-4 md:hidden"
+      className="absolute inset-s-0 inset-e-0 top-[64px] flex h-[calc(100vh-64px)] w-full flex-col gap-1 p-4 md:hidden"
       style={{ background: "var(--bg)", borderTop: "1px solid var(--border)" }}
     >
       {items.map((item) => {

@@ -12,12 +12,12 @@ export default function ProjectItem(props: Project) {
   return (
     <Link
       href={`/projects/${props.id}`}
-      className="reveal group flex flex-col overflow-hidden rounded-[20px] no-underline transition-all duration-300 hover:-translate-y-[7px]"
+      className="reveal group flex flex-col overflow-hidden rounded-[20px] no-underline transition-all duration-300 hover:translate-y-[-7px]"
       data-visible="true"
       style={{ background: "var(--surface)", border: "1px solid var(--border)", color: "var(--fg)" }}
     >
       {/* Cover */}
-      <div className="relative aspect-[16/10] overflow-hidden" style={{ background: "var(--surface2)" }}>
+      <div className="relative aspect-16/10 overflow-hidden" style={{ background: "var(--surface2)" }}>
         <Image
           src={props.Image}
           alt={props.Title}
@@ -65,7 +65,7 @@ export default function ProjectItem(props: Project) {
         </div>
         <span className="inline-flex items-center gap-[7px] text-[0.9rem] font-extrabold" style={{ color: "var(--primary)" }}>
           {t.viewProject}
-          <span className="transition-transform duration-200 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
+          <span className="transition-transform duration-200 group-hover:translate-x-1 group-hover:rtl:-translate-x-1">
             →
           </span>
         </span>

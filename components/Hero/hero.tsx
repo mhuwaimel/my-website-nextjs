@@ -44,15 +44,13 @@ export default function Hero() {
           </div>
 
           <h1
-            className="m-0 mb-2 font-[Cairo] text-[clamp(2.1rem,5.2vw,3.7rem)] font-black leading-[1.16] tracking-[-.01em]"
+            className="m-0 mb-2 whitespace-nowrap font-[Cairo] text-[clamp(1.55rem,3.6vw,3.25rem)] font-black leading-[1.16] tracking-[-.01em]"
             style={{
               animation: "heroReveal .8s cubic-bezier(.2,.7,.2,1) both",
               animationDelay: ".08s",
             }}
           >
-            محمد بن عبدالعزيز
-            <br />
-            <span style={{ color: "var(--primary)" }}>الهويمل</span>
+            محمد بن عبدالعزيز <span style={{ color: "var(--primary)" }}>الهويمل</span>
           </h1>
 
           <p
@@ -66,7 +64,7 @@ export default function Hero() {
           </p>
 
           <p
-            className="m-0 mb-7 max-w-[46ch] text-[1.04rem] leading-[2] [text-wrap:pretty]"
+            className="m-0 mb-7 max-w-[46ch] text-[1.04rem] leading-loose text-pretty"
             style={{
               color: "var(--muted)",
               animation: "heroReveal .85s cubic-bezier(.2,.7,.2,1) both",
@@ -85,7 +83,7 @@ export default function Hero() {
           >
             <a
               href="/Resume/Cv-english.pdf"
-              className="inline-flex items-center gap-[9px] rounded-[13px] px-[26px] py-3.5 font-extrabold transition-transform hover:-translate-y-[3px]"
+              className="inline-flex items-center gap-[9px] rounded-[13px] px-[26px] py-3.5 font-extrabold transition-transform hover:translate-y-[-3px]"
               style={{
                 background: "var(--primary)",
                 color: "var(--on-primary)",
@@ -153,7 +151,7 @@ export default function Hero() {
           }}
         >
           <div
-            className="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[22px]"
+            className="relative grid aspect-4/5 place-items-center overflow-hidden rounded-[22px]"
             style={{
               border: "1px solid var(--border)",
               background:

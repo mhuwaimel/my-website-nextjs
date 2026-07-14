@@ -5,6 +5,7 @@ import portofolio from "@/public/Images/projects/reactportofolio.png";
 import Trainingsystem from "@/public/Images/projects/SystemDashBoard.jpg";
 import SlSystem from "@/public/Images/projects/Ls.jpg";
 import myWebSite from "@/public/Images/projects/image.png";
+import sanadHomePage from "@/public/images/projects/sanad-homepage.png"
 import omrMain from "@/public/Images/projects/omr1.jpg";
 import type { StaticImageData } from "next/image";
 import { v4 as uuidv4 } from "uuid";
@@ -508,6 +509,56 @@ const projectsData: Project[] = [
       "Portfolio",
       "Projects",
       "Resumes"
+    ]
+  },
+  {
+    num: "09",
+    id: "abf488ec-26b6-4f19-84dd-f3466d4566f2",
+    Title: "منصة سند التعليمية",
+    Description: "سند منصة تعليمية متكاملة وجاهزة للإنتاج للتحضير للاختبارات المعيارية. تدعم المنصة اختبار القدرات العامة، قدرات الجامعيين، التحصيلي، اختبار STEP للغة الإنجليزية، دروس فيديو منظّمة، اختبارات تفاعلية بصيغة الاختبارات الرسمية، وتتبعًا شاملًا لتقدم المستخدم.",
+
+    imgs: [
+      {
+        id: uuidv4(),
+        img: "/Images/projects/sanad-homepage.png",
+      },
+      {
+        id: uuidv4(),
+        img: "/Images/projects/sanad-dashboard.png",
+      },
+      {
+        id: uuidv4(),
+        img: "/Images/projects/sanad-performance.png",
+      },
+      {
+        id: uuidv4(),
+        img: "/Images/projects/sanad-sections.png",
+      },
+    ],
+    Image: sanadHomePage,
+    delayAnimation: "500",
+    techStack: [
+      { name: "Nextjs 16" },
+      { name: "React" },
+      { name: "PostgreSQL" }
+    ],
+    preview: "Link",
+    link: "https://sanad.study",
+    Description_All: " سند منصة تعليمية متكاملة وجاهزة للإنتاج للتحضير للاختبارات المعيارية. تدعم المنصة اختبار القدرات العامة، قدرات الجامعيين، التحصيلي، اختبار STEP للغة الإنجليزية، دروس فيديو منظّمة، اختبارات تفاعلية بصيغة الاختبارات الرسمية، وتتبعًا شاملًا لتقدم المستخدم.",
+    keyWords: [
+      "سند",
+      "منصة سند التعليمية",
+      "القدرات",
+      "التحصيلي",
+      "قياس",
+      "اختبار القدرات العامة",
+      "اختبار قدرات الجامعيين",
+      "ستيب",
+      "STEP",
+      "تحصيلي علمي",
+      "تحصيلي نظري",
+      "نماذج اختبار قياس",
+      "اختبار قدرات تجريبي مجاني",
     ]
   },
 ];

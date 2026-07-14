@@ -17,7 +17,7 @@ export default function Container({
     <div
       className={cn(
         "container px-8 mx-auto xl:px-5",
-        large ? " max-w-screen-xl" : " max-w-screen-lg",
+        large ? " max-w-(--breakpoint-xl)" : " max-w-(--breakpoint-lg)",
         !alt && "py-5 lg:py-8",
         className
       )}

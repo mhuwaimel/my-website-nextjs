@@ -4,7 +4,7 @@ import { Home } from "lucide-react";
 export default function NotFound() {
   return (
     <div className="flex items-center justify-center min-h-screen min-w-full ">
-      <div className="p-6 space-y-6 text-center bg-white rounded-lg shadow-xl bg-gradient-to-br from-white to-purple-100">
+      <div className="p-6 space-y-6 text-center bg-white rounded-lg shadow-xl bg-linear-to-br from-white to-purple-100">
         <h1 className="text-6xl font-bold text-[#6936f5]">404</h1>
         <h2 className="text-3xl font-semibold text-gray-800 font-[tajawal]">
           الصفحة غير صحيحة

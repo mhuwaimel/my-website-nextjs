@@ -159,7 +159,7 @@ export default function ContactForm() {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-[9px] rounded-[13px] border-none px-[30px] py-3.5 text-[0.98rem] font-extrabold transition-transform hover:-translate-y-[3px] disabled:opacity-70"
+                className="inline-flex items-center gap-[9px] rounded-[13px] border-none px-[30px] py-3.5 text-[0.98rem] font-extrabold transition-transform hover:translate-y-[-3px] disabled:opacity-70"
                 style={{
                   background: "var(--primary)",
                   color: "var(--on-primary)",

@@ -43,7 +43,7 @@ export default function ActiveLink({
         aria-hidden="true"
       />
       <span
-        className="relative transition-colors duration-200 group-hover:!text-[var(--primary)]"
+        className="relative transition-colors duration-200 group-hover:text-(--primary)!"
         style={{ color: isActive ? "var(--primary)" : "var(--muted)" }}
       >
         {children}

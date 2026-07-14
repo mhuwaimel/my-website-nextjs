@@ -21,7 +21,7 @@ export default function AnimatedDownloadButton() {
         id="download-resume"
         data-umami-event="Download resume"
         onClick={openResume}
-        className="flex items-center justify-center px-6 py-3 font-semibold text-white rounded-full focus:outline-none"
+        className="flex items-center justify-center px-6 py-3 font-semibold text-white rounded-full focus:outline-hidden"
         style={{ backgroundColor: "#6936f5" }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
