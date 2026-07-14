@@ -27,6 +27,7 @@ export const dict = {
     },
     hero: {
       name: "محمد بن عبدالعزيز الهويمل",
+      nickname: "محمد الهويمل",
       bio: "بدأت رحلتي المهنية بست سنوات مبرمجاً في شركات وطنية كبرى، ثم انتقلت إلى التربية والتعليم معلّماً للحاسب الآلي، ومنذ سنوات أمارس دوراً قيادياً وإشرافياً في الميدان التعليمي، أوازن فيه بين الخبرة التقنية وقيادة الفرق وتحقيق الأهداف التربوية.",
       portraitAlt: "صورة محمد عبدالعزيز الهويمل",
     },
@@ -75,7 +76,8 @@ export const dict = {
       contactTitle: "Get in touch",
     },
     hero: {
-      name: "محمد الهويمل",
+      name: "Mohammed AbdulAziz AlHuwimmel",
+      nickname: "محمد الهويمل",
       bio: "I began my career with six years as a programmer at leading national companies, then moved into education as a computer teacher. For years, I have held leadership and supervisory roles in the education sector, balancing technical expertise, team leadership, and the achievement of educational goals.",
       portraitAlt: "Portrait of Mohammed AlHuwimmel",
     },

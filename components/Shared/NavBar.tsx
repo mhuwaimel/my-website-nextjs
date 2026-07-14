@@ -45,7 +45,7 @@ export default function Navbar() {
             style={{ fontFamily: "vibes", fontSize: "1.5rem" }}
             className=" text-[1.12rem] font-extrabold tracking-[.01em]"
           >
-            {t.hero.name}
+            {t.hero.nickname}
           </span>
         </Link>
 
@@ -57,11 +57,11 @@ export default function Navbar() {
           <button
             type="button"
             aria-label={
-              dir === "rtl"
-                ? t.aria.switchToEnglish
-                : t.aria.switchToArabic
+              dir === "rtl" ? t.aria.switchToEnglish : t.aria.switchToArabic
             }
-            title={dir === "rtl" ? t.aria.switchToEnglish : t.aria.switchToArabic}
+            title={
+              dir === "rtl" ? t.aria.switchToEnglish : t.aria.switchToArabic
+            }
             onClick={toggleDir}
             className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-(--surface2)"
             style={{
@@ -77,9 +77,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            aria-label={
-              isDark ? t.aria.switchToLight : t.aria.switchToDark
-            }
+            aria-label={isDark ? t.aria.switchToLight : t.aria.switchToDark}
             title={isDark ? t.aria.switchToLight : t.aria.switchToDark}
             onClick={toggleTheme}
             className="grid h-10 w-10 place-items-center rounded-full transition-colors hover:bg-(--surface2)"
