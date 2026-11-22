@@ -108,9 +108,9 @@ export default function Hero() {
             }}
           >
             {[
-              { n: "+17", l: t.stats.years },
-              { n: "11", l: t.stats.roles },
-              { n: "10", l: t.stats.projects },
+              { n: "+17", l: t.stats.years, link: "/experience" },
+              { n: "11", l: t.stats.roles, link: "/experience" },
+              { n: "10", l: t.stats.projects, link: "/projects" },
             ].map((s, i) => (
               <div key={i} className="flex items-center gap-[30px]">
                 {i > 0 && (
@@ -119,20 +119,23 @@ export default function Hero() {
                     style={{ background: "var(--border)" }}
                   />
                 )}
-                <div>
-                  <div
-                    className="font-[Cairo] text-[1.9rem] font-black"
-                    style={{ color: "var(--primary)" }}
-                  >
-                    {s.n}
+                <a href={s.link}>
+                  {" "}
+                  <div>
+                    <div
+                      className="font-[Cairo] text-[1.9rem] font-black"
+                      style={{ color: "var(--primary)" }}
+                    >
+                      {s.n}
+                    </div>
+                    <div
+                      className="text-[0.85rem] font-semibold"
+                      style={{ color: "var(--muted)" }}
+                    >
+                      {s.l}
+                    </div>
                   </div>
-                  <div
-                    className="text-[0.85rem] font-semibold"
-                    style={{ color: "var(--muted)" }}
-                  >
-                    {s.l}
-                  </div>
-                </div>
+                </a>
               </div>
             ))}
           </div>
