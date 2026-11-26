@@ -12,7 +12,7 @@ export const siteConfig = {
   ogImageUrl: "/assets/hero.jpg",
   verification: "JLL_fSfCP4IAkq_2ROym3apcpBHo27JnXR0NdDWtedk",
   bing_verification: "9C0D081B10D033EC5667B464D310B54F",
-  url: "https://www.mohamed.sa",
+  url: "https://mohamed.sa",
   keywords: [
     "الهويمل",
     "محمد عبدالعزيز الهويمل",
@@ -44,7 +44,7 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/mhuwaimel",
-    site: "https://www.mohamed.sa",
+    site: "https://mohamed.sa",
   },
   mainNav: [
     {
