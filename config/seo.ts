@@ -8,11 +8,11 @@ export const siteConfig = {
   ogDescription:
     "محمد عبدالعزيز الهويمل، مبرمج ومشرف تربوي يجمع بين تطوير أنظمة الويب وقيادة الفرق التعليمية وتحسين العمليات الرقمية في الميدان التعليمي.",
   ogSiteName: "محمد بن عبدالعزيز الهويمل",
-  ogUrl: "https://mohammedh.sa",
+  ogUrl: "https://www.mohamed.sa",
   ogImageUrl: "/assets/hero.jpg",
-  verification: "WVx7eEsjASR60PqML6j_K3wSyROLR5qqp8905y-Zv8Y",
+  verification: "JLL_fSfCP4IAkq_2ROym3apcpBHo27JnXR0NdDWtedk",
   bing_verification: "9C0D081B10D033EC5667B464D310B54F",
-  url: "https://mohammedh.sa",
+  url: "https://www.mohamed.sa",
   keywords: [
     "الهويمل",
     "محمد عبدالعزيز الهويمل",
@@ -44,7 +44,7 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/mhuwaimel",
-    site: "https://mohammedh.sa",
+    site: "https://www.mohamed.sa",
   },
   mainNav: [
     {
